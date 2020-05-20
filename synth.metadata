@@ -3,22 +3,23 @@
     {
       "git": {
         "name": ".",
-        "remote": "sso://devrel/cloud/libraries/python/python-bigquery-connection"
+        "remote": "https://github.com/googleapis/python-bigquery-connection.git",
+        "sha": "2de109e254da411e407133772163652dda86e938"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "77ca422cbfe3a1f7e4c8253e4b2fccda8271d659",
-        "internalRef": "311566775"
+        "sha": "7a8875d4bcf51993f6f7aa181066cc5ec95539d5",
+        "internalRef": "312345206"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "f395615039665af6599f69305efcd886685e74f9"
+        "sha": "274dd49554809834287c24b6dd324a85283f1182"
       }
     }
   ],

@@ -7,6 +7,7 @@ Python Client for BigQuery Connection
 
 - `Client Library Documentation`_
 - `Product Documentation`_
+- `Introduction to BigQuery external data sources`_
 
 .. |beta| image:: https://img.shields.io/badge/support-beta-orange.svg
    :target: https://github.com/googleapis/google-cloud-python/blob/master/README.rst#beta-support
@@ -17,6 +18,7 @@ Python Client for BigQuery Connection
 .. _BigQuery Connection API: https://cloud.google.com/bigquery/docs/reference/bigqueryconnection/rest
 .. _Client Library Documentation: https://googleapis.dev/python/bigqueryconnection/latest
 .. _Product Documentation:  https://cloud.google.com/bigquery/docs/reference/bigqueryconnection/rest
+.. _Introduction to BigQuery external data sources:  https://cloud.google.com/bigquery/external-data-sources
 
 Quick Start
 -----------

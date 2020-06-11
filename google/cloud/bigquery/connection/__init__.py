@@ -15,7 +15,6 @@
 # limitations under the License.
 #
 
-
 from google.cloud.bigquery.connection_v1.services.connection_service.client import (
     ConnectionServiceClient,
 )

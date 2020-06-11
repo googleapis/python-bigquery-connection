@@ -504,6 +504,38 @@ def test_list_connections_field_headers():
     assert ("x-goog-request-params", "parent=parent/value") in kw["metadata"]
 
 
+def test_list_connections_flattened():
+    client = ConnectionServiceClient(credentials=credentials.AnonymousCredentials())
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+        type(client._transport.list_connections), "__call__"
+    ) as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = connection.ListConnectionsResponse()
+
+        # Call the method with a truthy value for each flattened field,
+        # using the keyword arguments to the method.
+        client.list_connections(parent="parent_value")
+
+        # Establish that the underlying call was made with the expected
+        # request object values.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0].parent == "parent_value"
+
+
+def test_list_connections_flattened_error():
+    client = ConnectionServiceClient(credentials=credentials.AnonymousCredentials())
+
+    # Attempting to call a method with both a request object and flattened
+    # fields is an error.
+    with pytest.raises(ValueError):
+        client.list_connections(
+            connection.ListConnectionsRequest(), parent="parent_value"
+        )
+
+
 def test_list_connections_pager():
     client = ConnectionServiceClient(credentials=credentials.AnonymousCredentials)
 

@@ -28,7 +28,7 @@ from google.iam.v1 import policy_pb2 as policy  # type: ignore
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
 
-class ConnectionServiceTransport(metaclass=abc.ABCMeta):
+class ConnectionServiceTransport(abc.ABC):
     """Abstract transport class for ConnectionService."""
 
     AUTH_SCOPES = (
@@ -41,6 +41,7 @@ class ConnectionServiceTransport(metaclass=abc.ABCMeta):
         *,
         host: str = "bigqueryconnection.googleapis.com",
         credentials: credentials.Credentials = None,
+        **kwargs,
     ) -> None:
         """Instantiate the transport.
 
@@ -69,57 +70,83 @@ class ConnectionServiceTransport(metaclass=abc.ABCMeta):
     def create_connection(
         self
     ) -> typing.Callable[
-        [gcbc_connection.CreateConnectionRequest], gcbc_connection.Connection
+        [gcbc_connection.CreateConnectionRequest],
+        typing.Union[
+            gcbc_connection.Connection, typing.Awaitable[gcbc_connection.Connection]
+        ],
     ]:
-        raise NotImplementedError
+        raise NotImplementedError()
 
     @property
     def get_connection(
         self
-    ) -> typing.Callable[[connection.GetConnectionRequest], connection.Connection]:
-        raise NotImplementedError
+    ) -> typing.Callable[
+        [connection.GetConnectionRequest],
+        typing.Union[connection.Connection, typing.Awaitable[connection.Connection]],
+    ]:
+        raise NotImplementedError()
 
     @property
     def list_connections(
         self
     ) -> typing.Callable[
-        [connection.ListConnectionsRequest], connection.ListConnectionsResponse
+        [connection.ListConnectionsRequest],
+        typing.Union[
+            connection.ListConnectionsResponse,
+            typing.Awaitable[connection.ListConnectionsResponse],
+        ],
     ]:
-        raise NotImplementedError
+        raise NotImplementedError()
 
     @property
     def update_connection(
         self
     ) -> typing.Callable[
-        [gcbc_connection.UpdateConnectionRequest], gcbc_connection.Connection
+        [gcbc_connection.UpdateConnectionRequest],
+        typing.Union[
+            gcbc_connection.Connection, typing.Awaitable[gcbc_connection.Connection]
+        ],
     ]:
-        raise NotImplementedError
+        raise NotImplementedError()
 
     @property
     def delete_connection(
         self
-    ) -> typing.Callable[[connection.DeleteConnectionRequest], empty.Empty]:
-        raise NotImplementedError
+    ) -> typing.Callable[
+        [connection.DeleteConnectionRequest],
+        typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
+    ]:
+        raise NotImplementedError()
 
     @property
     def get_iam_policy(
         self
-    ) -> typing.Callable[[iam_policy.GetIamPolicyRequest], policy.Policy]:
-        raise NotImplementedError
+    ) -> typing.Callable[
+        [iam_policy.GetIamPolicyRequest],
+        typing.Union[policy.Policy, typing.Awaitable[policy.Policy]],
+    ]:
+        raise NotImplementedError()
 
     @property
     def set_iam_policy(
         self
-    ) -> typing.Callable[[iam_policy.SetIamPolicyRequest], policy.Policy]:
-        raise NotImplementedError
+    ) -> typing.Callable[
+        [iam_policy.SetIamPolicyRequest],
+        typing.Union[policy.Policy, typing.Awaitable[policy.Policy]],
+    ]:
+        raise NotImplementedError()
 
     @property
     def test_iam_permissions(
         self
     ) -> typing.Callable[
-        [iam_policy.TestIamPermissionsRequest], iam_policy.TestIamPermissionsResponse
+        [iam_policy.TestIamPermissionsRequest],
+        typing.Union[
+            iam_policy.TestIamPermissionsResponse,
+            typing.Awaitable[iam_policy.TestIamPermissionsResponse],
+        ],
     ]:
-        raise NotImplementedError
+        raise NotImplementedError()
 
 
 __all__ = ("ConnectionServiceTransport",)

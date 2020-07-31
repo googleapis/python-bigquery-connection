@@ -263,6 +263,7 @@ class ConnectionServiceAsyncClient:
         self,
         request: connection.ListConnectionsRequest = None,
         *,
+        parent: str = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -273,6 +274,12 @@ class ConnectionServiceAsyncClient:
             request (:class:`~.connection.ListConnectionsRequest`):
                 The request object. The request for
                 [ConnectionService.ListConnections][google.cloud.bigquery.connection.v1.ConnectionService.ListConnections].
+            parent (:class:`str`):
+                Required. Parent resource name. Must be in the form:
+                ``projects/{project_id}/locations/{location_id}``
+                This corresponds to the ``parent`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -290,8 +297,21 @@ class ConnectionServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
+        # Sanity check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        if request is not None and any([parent]):
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = connection.ListConnectionsRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+
+        if parent is not None:
+            request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -629,8 +649,8 @@ class ConnectionServiceAsyncClient:
         r"""Sets the access control policy on the specified resource.
         Replaces any existing policy.
 
-        Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
-        PERMISSION_DENIED
+        Can return ``NOT_FOUND``, ``INVALID_ARGUMENT``, and
+        ``PERMISSION_DENIED`` errors.
 
         Args:
             request (:class:`~.iam_policy.SetIamPolicyRequest`):
@@ -775,7 +795,7 @@ class ConnectionServiceAsyncClient:
     ) -> iam_policy.TestIamPermissionsResponse:
         r"""Returns permissions that a caller has on the specified resource.
         If the resource does not exist, this will return an empty set of
-        permissions, not a NOT_FOUND error.
+        permissions, not a ``NOT_FOUND`` error.
 
         Note: This operation is designed to be used for building
         permission-aware UIs and command-line tools, not for

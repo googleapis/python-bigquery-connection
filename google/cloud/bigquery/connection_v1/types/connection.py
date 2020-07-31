@@ -53,7 +53,9 @@ class CreateConnectionRequest(proto.Message):
     """
 
     parent = proto.Field(proto.STRING, number=1)
+
     connection_id = proto.Field(proto.STRING, number=2)
+
     connection = proto.Field(proto.MESSAGE, number=3, message="Connection")
 
 
@@ -85,7 +87,9 @@ class ListConnectionsRequest(proto.Message):
     """
 
     parent = proto.Field(proto.STRING, number=1)
+
     page_size = proto.Field(proto.INT32, number=4)
+
     page_token = proto.Field(proto.STRING, number=3)
 
 
@@ -105,6 +109,7 @@ class ListConnectionsResponse(proto.Message):
         return self
 
     next_page_token = proto.Field(proto.STRING, number=1)
+
     connections = proto.RepeatedField(proto.MESSAGE, number=2, message="Connection")
 
 
@@ -125,7 +130,9 @@ class UpdateConnectionRequest(proto.Message):
     """
 
     name = proto.Field(proto.STRING, number=1)
+
     connection = proto.Field(proto.MESSAGE, number=2, message="Connection")
+
     update_mask = proto.Field(proto.MESSAGE, number=3, message=field_mask.FieldMask)
 
 
@@ -168,11 +175,19 @@ class Connection(proto.Message):
     """
 
     name = proto.Field(proto.STRING, number=1)
+
     friendly_name = proto.Field(proto.STRING, number=2)
+
     description = proto.Field(proto.STRING, number=3)
-    cloud_sql = proto.Field(proto.MESSAGE, number=4, message="CloudSqlProperties")
+
+    cloud_sql = proto.Field(
+        proto.MESSAGE, number=4, oneof="properties", message="CloudSqlProperties"
+    )
+
     creation_time = proto.Field(proto.INT64, number=5)
+
     last_modified_time = proto.Field(proto.INT64, number=6)
+
     has_credential = proto.Field(proto.BOOL, number=7)
 
 
@@ -198,8 +213,11 @@ class CloudSqlProperties(proto.Message):
         MYSQL = 2
 
     instance_id = proto.Field(proto.STRING, number=1)
+
     database = proto.Field(proto.STRING, number=2)
+
     type = proto.Field(proto.ENUM, number=3, enum=DatabaseType)
+
     credential = proto.Field(proto.MESSAGE, number=4, message="CloudSqlCredential")
 
 
@@ -214,6 +232,7 @@ class CloudSqlCredential(proto.Message):
     """
 
     username = proto.Field(proto.STRING, number=1)
+
     password = proto.Field(proto.STRING, number=2)
 
 

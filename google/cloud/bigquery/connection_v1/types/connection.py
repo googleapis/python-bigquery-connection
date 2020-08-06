@@ -56,7 +56,7 @@ class CreateConnectionRequest(proto.Message):
 
     connection_id = proto.Field(proto.STRING, number=2)
 
-    connection = proto.Field(proto.MESSAGE, number=3, message="Connection")
+    connection = proto.Field(proto.MESSAGE, number=3, message="Connection",)
 
 
 class GetConnectionRequest(proto.Message):
@@ -110,7 +110,7 @@ class ListConnectionsResponse(proto.Message):
 
     next_page_token = proto.Field(proto.STRING, number=1)
 
-    connections = proto.RepeatedField(proto.MESSAGE, number=2, message="Connection")
+    connections = proto.RepeatedField(proto.MESSAGE, number=2, message="Connection",)
 
 
 class UpdateConnectionRequest(proto.Message):
@@ -131,9 +131,9 @@ class UpdateConnectionRequest(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    connection = proto.Field(proto.MESSAGE, number=2, message="Connection")
+    connection = proto.Field(proto.MESSAGE, number=2, message="Connection",)
 
-    update_mask = proto.Field(proto.MESSAGE, number=3, message=field_mask.FieldMask)
+    update_mask = proto.Field(proto.MESSAGE, number=3, message=field_mask.FieldMask,)
 
 
 class DeleteConnectionRequest(proto.Message):
@@ -181,7 +181,7 @@ class Connection(proto.Message):
     description = proto.Field(proto.STRING, number=3)
 
     cloud_sql = proto.Field(
-        proto.MESSAGE, number=4, oneof="properties", message="CloudSqlProperties"
+        proto.MESSAGE, number=4, oneof="properties", message="CloudSqlProperties",
     )
 
     creation_time = proto.Field(proto.INT64, number=5)
@@ -216,9 +216,9 @@ class CloudSqlProperties(proto.Message):
 
     database = proto.Field(proto.STRING, number=2)
 
-    type = proto.Field(proto.ENUM, number=3, enum=DatabaseType)
+    type = proto.Field(proto.ENUM, number=3, enum=DatabaseType,)
 
-    credential = proto.Field(proto.MESSAGE, number=4, message="CloudSqlCredential")
+    credential = proto.Field(proto.MESSAGE, number=4, message="CloudSqlCredential",)
 
 
 class CloudSqlCredential(proto.Message):

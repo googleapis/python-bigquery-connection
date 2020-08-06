@@ -95,7 +95,7 @@ class ConnectionServiceAsyncClient:
         """
 
         self._client = ConnectionServiceClient(
-            credentials=credentials, transport=transport, client_options=client_options
+            credentials=credentials, transport=transport, client_options=client_options,
         )
 
     async def create_connection(
@@ -171,7 +171,7 @@ class ConnectionServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.create_connection,
-            default_timeout=None,
+            default_timeout=60.0,
             client_info=_client_info,
         )
 
@@ -182,7 +182,7 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -243,7 +243,15 @@ class ConnectionServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.get_connection,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=60.0,
             client_info=_client_info,
         )
 
@@ -254,7 +262,7 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -263,6 +271,7 @@ class ConnectionServiceAsyncClient:
         self,
         request: connection.ListConnectionsRequest = None,
         *,
+        parent: str = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -273,6 +282,12 @@ class ConnectionServiceAsyncClient:
             request (:class:`~.connection.ListConnectionsRequest`):
                 The request object. The request for
                 [ConnectionService.ListConnections][google.cloud.bigquery.connection.v1.ConnectionService.ListConnections].
+            parent (:class:`str`):
+                Required. Parent resource name. Must be in the form:
+                ``projects/{project_id}/locations/{location_id}``
+                This corresponds to the ``parent`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -290,14 +305,35 @@ class ConnectionServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
+        # Sanity check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        if request is not None and any([parent]):
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = connection.ListConnectionsRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+
+        if parent is not None:
+            request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.list_connections,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=60.0,
             client_info=_client_info,
         )
 
@@ -308,12 +344,12 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListConnectionsAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
@@ -395,7 +431,7 @@ class ConnectionServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.update_connection,
-            default_timeout=None,
+            default_timeout=60.0,
             client_info=_client_info,
         )
 
@@ -406,7 +442,7 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -460,7 +496,15 @@ class ConnectionServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.delete_connection,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=60.0,
             client_info=_client_info,
         )
 
@@ -471,7 +515,9 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        await rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        await rpc(
+            request, retry=retry, timeout=timeout, metadata=metadata,
+        )
 
     async def get_iam_policy(
         self,
@@ -601,7 +647,7 @@ class ConnectionServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.get_iam_policy,
-            default_timeout=None,
+            default_timeout=60.0,
             client_info=_client_info,
         )
 
@@ -612,7 +658,7 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -629,8 +675,8 @@ class ConnectionServiceAsyncClient:
         r"""Sets the access control policy on the specified resource.
         Replaces any existing policy.
 
-        Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
-        PERMISSION_DENIED
+        Can return ``NOT_FOUND``, ``INVALID_ARGUMENT``, and
+        ``PERMISSION_DENIED`` errors.
 
         Args:
             request (:class:`~.iam_policy.SetIamPolicyRequest`):
@@ -747,7 +793,7 @@ class ConnectionServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.set_iam_policy,
-            default_timeout=None,
+            default_timeout=60.0,
             client_info=_client_info,
         )
 
@@ -758,7 +804,7 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -775,7 +821,7 @@ class ConnectionServiceAsyncClient:
     ) -> iam_policy.TestIamPermissionsResponse:
         r"""Returns permissions that a caller has on the specified resource.
         If the resource does not exist, this will return an empty set of
-        permissions, not a NOT_FOUND error.
+        permissions, not a ``NOT_FOUND`` error.
 
         Note: This operation is designed to be used for building
         permission-aware UIs and command-line tools, not for
@@ -843,7 +889,7 @@ class ConnectionServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.test_iam_permissions,
-            default_timeout=None,
+            default_timeout=60.0,
             client_info=_client_info,
         )
 
@@ -854,7 +900,7 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -863,8 +909,8 @@ class ConnectionServiceAsyncClient:
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-bigquery-connection"
-        ).version
+            "google-cloud-bigquery-connection",
+        ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()

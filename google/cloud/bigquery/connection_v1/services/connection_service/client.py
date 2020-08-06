@@ -56,7 +56,9 @@ class ConnectionServiceClientMeta(type):
     _transport_registry["grpc"] = ConnectionServiceGrpcTransport
     _transport_registry["grpc_asyncio"] = ConnectionServiceGrpcAsyncIOTransport
 
-    def get_transport_class(cls, label: str = None) -> Type[ConnectionServiceTransport]:
+    def get_transport_class(
+        cls, label: str = None,
+    ) -> Type[ConnectionServiceTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -133,10 +135,10 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
     from_service_account_json = from_service_account_file
 
     @staticmethod
-    def connection_path(project: str, location: str, connection: str) -> str:
+    def connection_path(project: str, location: str, connection: str,) -> str:
         """Return a fully-qualified connection string."""
         return "projects/{project}/locations/{location}/connections/{connection}".format(
-            project=project, location=location, connection=connection
+            project=project, location=location, connection=connection,
         )
 
     @staticmethod
@@ -324,7 +326,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -398,7 +400,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -407,6 +409,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         self,
         request: connection.ListConnectionsRequest = None,
         *,
+        parent: str = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -417,6 +420,12 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
             request (:class:`~.connection.ListConnectionsRequest`):
                 The request object. The request for
                 [ConnectionService.ListConnections][google.cloud.bigquery.connection.v1.ConnectionService.ListConnections].
+            parent (:class:`str`):
+                Required. Parent resource name. Must be in the form:
+                ``projects/{project_id}/locations/{location_id}``
+                This corresponds to the ``parent`` field
+                on the ``request`` instance; if ``request`` is provided, this
+                should not be set.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -434,6 +443,14 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
+        # Sanity check: If we got a request object, we should *not* have
+        # gotten any keyword arguments that map to the request.
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         # Minor optimization to avoid making a copy if the user passes
         # in a connection.ListConnectionsRequest.
@@ -441,6 +458,12 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, connection.ListConnectionsRequest):
             request = connection.ListConnectionsRequest(request)
+
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
+
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -453,12 +476,12 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListConnectionsPager(
-            method=rpc, request=request, response=response, metadata=metadata
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
@@ -553,7 +576,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -620,7 +643,9 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         )
 
         # Send the request.
-        rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        rpc(
+            request, retry=retry, timeout=timeout, metadata=metadata,
+        )
 
     def get_iam_policy(
         self,
@@ -758,7 +783,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -775,8 +800,8 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         r"""Sets the access control policy on the specified resource.
         Replaces any existing policy.
 
-        Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
-        PERMISSION_DENIED
+        Can return ``NOT_FOUND``, ``INVALID_ARGUMENT``, and
+        ``PERMISSION_DENIED`` errors.
 
         Args:
             request (:class:`~.iam_policy.SetIamPolicyRequest`):
@@ -901,7 +926,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -918,7 +943,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
     ) -> iam_policy.TestIamPermissionsResponse:
         r"""Returns permissions that a caller has on the specified resource.
         If the resource does not exist, this will return an empty set of
-        permissions, not a NOT_FOUND error.
+        permissions, not a ``NOT_FOUND`` error.
 
         Note: This operation is designed to be used for building
         permission-aware UIs and command-line tools, not for
@@ -994,7 +1019,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata)
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -1003,8 +1028,8 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-bigquery-connection"
-        ).version
+            "google-cloud-bigquery-connection",
+        ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()

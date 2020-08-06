@@ -19,23 +19,26 @@ import synthtool as s
 import synthtool.gcp as gcp
 from synthtool.languages import python
 
-gapic = gcp.GAPICMicrogenerator()
+gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
 # ----------------------------------------------------------------------------
 # Generate access approval GAPIC layer
 # ----------------------------------------------------------------------------
-library = gapic.py_library("bigquery/connection", "v1")
+library = gapic.py_library(
+    service="bigquery/connection",
+    version="v1",
+    bazel_target=f"//google/cloud/bigquery/connection/v1:bigquery-connection-v1-py"
+)
 
-s.move(library, excludes=["nox.py", "setup.py", "README.rst", "docs/index.rst"])
+s.move(library, excludes=["setup.py", "README.rst", "docs/index.rst"])
 
 # ----------------------------------------------------------------------------
 # Add templated files
 # ----------------------------------------------------------------------------
 templated_files = common.py_library(
     cov_level=100,
-    unit_test_python_versions=["3.6", "3.7", "3.8"],
-    system_test_python_versions=["3.7"],
+    microgenerator=True,
 )
 s.move(
     templated_files, excludes=[".coveragerc"]

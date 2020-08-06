@@ -35,8 +35,8 @@ from google.protobuf import empty_pb2 as empty  # type: ignore
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            "google-cloud-bigquery-connection"
-        ).version
+            "google-cloud-bigquery-connection",
+        ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
@@ -108,36 +108,66 @@ class ConnectionServiceTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.create_connection: gapic_v1.method.wrap_method(
-                self.create_connection, default_timeout=None, client_info=_client_info
+                self.create_connection, default_timeout=60.0, client_info=_client_info,
             ),
             self.get_connection: gapic_v1.method.wrap_method(
-                self.get_connection, default_timeout=None, client_info=_client_info
+                self.get_connection,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    ),
+                ),
+                default_timeout=60.0,
+                client_info=_client_info,
             ),
             self.list_connections: gapic_v1.method.wrap_method(
-                self.list_connections, default_timeout=None, client_info=_client_info
+                self.list_connections,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    ),
+                ),
+                default_timeout=60.0,
+                client_info=_client_info,
             ),
             self.update_connection: gapic_v1.method.wrap_method(
-                self.update_connection, default_timeout=None, client_info=_client_info
+                self.update_connection, default_timeout=60.0, client_info=_client_info,
             ),
             self.delete_connection: gapic_v1.method.wrap_method(
-                self.delete_connection, default_timeout=None, client_info=_client_info
+                self.delete_connection,
+                default_retry=retries.Retry(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    ),
+                ),
+                default_timeout=60.0,
+                client_info=_client_info,
             ),
             self.get_iam_policy: gapic_v1.method.wrap_method(
-                self.get_iam_policy, default_timeout=None, client_info=_client_info
+                self.get_iam_policy, default_timeout=60.0, client_info=_client_info,
             ),
             self.set_iam_policy: gapic_v1.method.wrap_method(
-                self.set_iam_policy, default_timeout=None, client_info=_client_info
+                self.set_iam_policy, default_timeout=60.0, client_info=_client_info,
             ),
             self.test_iam_permissions: gapic_v1.method.wrap_method(
                 self.test_iam_permissions,
-                default_timeout=None,
+                default_timeout=60.0,
                 client_info=_client_info,
             ),
         }
 
     @property
     def create_connection(
-        self
+        self,
     ) -> typing.Callable[
         [gcbc_connection.CreateConnectionRequest],
         typing.Union[
@@ -148,7 +178,7 @@ class ConnectionServiceTransport(abc.ABC):
 
     @property
     def get_connection(
-        self
+        self,
     ) -> typing.Callable[
         [connection.GetConnectionRequest],
         typing.Union[connection.Connection, typing.Awaitable[connection.Connection]],
@@ -157,7 +187,7 @@ class ConnectionServiceTransport(abc.ABC):
 
     @property
     def list_connections(
-        self
+        self,
     ) -> typing.Callable[
         [connection.ListConnectionsRequest],
         typing.Union[
@@ -169,7 +199,7 @@ class ConnectionServiceTransport(abc.ABC):
 
     @property
     def update_connection(
-        self
+        self,
     ) -> typing.Callable[
         [gcbc_connection.UpdateConnectionRequest],
         typing.Union[
@@ -180,7 +210,7 @@ class ConnectionServiceTransport(abc.ABC):
 
     @property
     def delete_connection(
-        self
+        self,
     ) -> typing.Callable[
         [connection.DeleteConnectionRequest],
         typing.Union[empty.Empty, typing.Awaitable[empty.Empty]],
@@ -189,7 +219,7 @@ class ConnectionServiceTransport(abc.ABC):
 
     @property
     def get_iam_policy(
-        self
+        self,
     ) -> typing.Callable[
         [iam_policy.GetIamPolicyRequest],
         typing.Union[policy.Policy, typing.Awaitable[policy.Policy]],
@@ -198,7 +228,7 @@ class ConnectionServiceTransport(abc.ABC):
 
     @property
     def set_iam_policy(
-        self
+        self,
     ) -> typing.Callable[
         [iam_policy.SetIamPolicyRequest],
         typing.Union[policy.Policy, typing.Awaitable[policy.Policy]],
@@ -207,7 +237,7 @@ class ConnectionServiceTransport(abc.ABC):
 
     @property
     def test_iam_permissions(
-        self
+        self,
     ) -> typing.Callable[
         [iam_policy.TestIamPermissionsRequest],
         typing.Union[

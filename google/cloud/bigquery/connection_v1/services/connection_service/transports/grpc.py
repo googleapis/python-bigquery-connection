@@ -201,7 +201,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
         # have one.
         if not hasattr(self, "_grpc_channel"):
             self._grpc_channel = self.create_channel(
-                self._host, credentials=self._credentials
+                self._host, credentials=self._credentials,
             )
 
         # Return the channel from cache.
@@ -209,7 +209,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
     @property
     def create_connection(
-        self
+        self,
     ) -> Callable[
         [gcbc_connection.CreateConnectionRequest], gcbc_connection.Connection
     ]:
@@ -237,7 +237,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
     @property
     def get_connection(
-        self
+        self,
     ) -> Callable[[connection.GetConnectionRequest], connection.Connection]:
         r"""Return a callable for the get connection method over gRPC.
 
@@ -263,7 +263,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
     @property
     def list_connections(
-        self
+        self,
     ) -> Callable[
         [connection.ListConnectionsRequest], connection.ListConnectionsResponse
     ]:
@@ -291,7 +291,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
     @property
     def update_connection(
-        self
+        self,
     ) -> Callable[
         [gcbc_connection.UpdateConnectionRequest], gcbc_connection.Connection
     ]:
@@ -321,7 +321,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
     @property
     def delete_connection(
-        self
+        self,
     ) -> Callable[[connection.DeleteConnectionRequest], empty.Empty]:
         r"""Return a callable for the delete connection method over gRPC.
 
@@ -347,7 +347,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
     @property
     def get_iam_policy(
-        self
+        self,
     ) -> Callable[[iam_policy.GetIamPolicyRequest], policy.Policy]:
         r"""Return a callable for the get iam policy method over gRPC.
 
@@ -375,15 +375,15 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
     @property
     def set_iam_policy(
-        self
+        self,
     ) -> Callable[[iam_policy.SetIamPolicyRequest], policy.Policy]:
         r"""Return a callable for the set iam policy method over gRPC.
 
         Sets the access control policy on the specified resource.
         Replaces any existing policy.
 
-        Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and
-        PERMISSION_DENIED
+        Can return ``NOT_FOUND``, ``INVALID_ARGUMENT``, and
+        ``PERMISSION_DENIED`` errors.
 
         Returns:
             Callable[[~.SetIamPolicyRequest],
@@ -405,7 +405,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
     @property
     def test_iam_permissions(
-        self
+        self,
     ) -> Callable[
         [iam_policy.TestIamPermissionsRequest], iam_policy.TestIamPermissionsResponse
     ]:
@@ -413,7 +413,7 @@ class ConnectionServiceGrpcTransport(ConnectionServiceTransport):
 
         Returns permissions that a caller has on the specified resource.
         If the resource does not exist, this will return an empty set of
-        permissions, not a NOT_FOUND error.
+        permissions, not a ``NOT_FOUND`` error.
 
         Note: This operation is designed to be used for building
         permission-aware UIs and command-line tools, not for

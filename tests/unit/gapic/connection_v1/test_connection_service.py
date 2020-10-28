@@ -169,6 +169,7 @@ def test_connection_service_client_client_options(
             api_mtls_endpoint="squid.clam.whelk",
             client_cert_source=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
@@ -185,6 +186,7 @@ def test_connection_service_client_client_options(
                 api_mtls_endpoint=client.DEFAULT_ENDPOINT,
                 client_cert_source=None,
                 quota_project_id=None,
+                client_info=transports.base.DEFAULT_CLIENT_INFO,
             )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
@@ -201,6 +203,7 @@ def test_connection_service_client_client_options(
                 api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
                 client_cert_source=None,
                 quota_project_id=None,
+                client_info=transports.base.DEFAULT_CLIENT_INFO,
             )
 
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
@@ -220,6 +223,7 @@ def test_connection_service_client_client_options(
                 api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
                 client_cert_source=client_cert_source_callback,
                 quota_project_id=None,
+                client_info=transports.base.DEFAULT_CLIENT_INFO,
             )
 
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
@@ -240,6 +244,7 @@ def test_connection_service_client_client_options(
                     api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
                     client_cert_source=None,
                     quota_project_id=None,
+                    client_info=transports.base.DEFAULT_CLIENT_INFO,
                 )
 
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
@@ -260,6 +265,7 @@ def test_connection_service_client_client_options(
                     api_mtls_endpoint=client.DEFAULT_ENDPOINT,
                     client_cert_source=None,
                     quota_project_id=None,
+                    client_info=transports.base.DEFAULT_CLIENT_INFO,
                 )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS has
@@ -281,6 +287,7 @@ def test_connection_service_client_client_options(
             api_mtls_endpoint=client.DEFAULT_ENDPOINT,
             client_cert_source=None,
             quota_project_id="octopus",
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -311,6 +318,7 @@ def test_connection_service_client_client_options_scopes(
             api_mtls_endpoint=client.DEFAULT_ENDPOINT,
             client_cert_source=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -341,6 +349,7 @@ def test_connection_service_client_client_options_credentials_file(
             api_mtls_endpoint=client.DEFAULT_ENDPOINT,
             client_cert_source=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -360,6 +369,7 @@ def test_connection_service_client_client_options_from_dict():
             api_mtls_endpoint="squid.clam.whelk",
             client_cert_source=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -2690,3 +2700,24 @@ def test_parse_connection_path():
     # Check that the path construction is reversible.
     actual = ConnectionServiceClient.parse_connection_path(path)
     assert expected == actual
+
+
+def test_client_withDEFAULT_CLIENT_INFO():
+    client_info = gapic_v1.client_info.ClientInfo()
+
+    with mock.patch.object(
+        transports.ConnectionServiceTransport, "_prep_wrapped_messages"
+    ) as prep:
+        client = ConnectionServiceClient(
+            credentials=credentials.AnonymousCredentials(), client_info=client_info,
+        )
+        prep.assert_called_once_with(client_info)
+
+    with mock.patch.object(
+        transports.ConnectionServiceTransport, "_prep_wrapped_messages"
+    ) as prep:
+        transport_class = ConnectionServiceClient.get_transport_class()
+        transport = transport_class(
+            credentials=credentials.AnonymousCredentials(), client_info=client_info,
+        )
+        prep.assert_called_once_with(client_info)

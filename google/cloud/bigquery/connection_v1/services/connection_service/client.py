@@ -37,7 +37,7 @@ from google.iam.v1 import iam_policy_pb2 as iam_policy  # type: ignore
 from google.iam.v1 import policy_pb2 as policy  # type: ignore
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
-from .transports.base import ConnectionServiceTransport
+from .transports.base import ConnectionServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import ConnectionServiceGrpcTransport
 from .transports.grpc_asyncio import ConnectionServiceGrpcAsyncIOTransport
 
@@ -156,6 +156,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         credentials: credentials.Credentials = None,
         transport: Union[str, ConnectionServiceTransport] = None,
         client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the connection service client.
 
@@ -181,6 +182,11 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
                 (2) The ``client_cert_source`` property is used to provide client
                 SSL credentials for mutual TLS transport. If not provided, the
                 default SSL credentials will be used if present.
+            client_info (google.api_core.gapic_v1.client_info.ClientInfo):	
+                The client info used to send a user-agent string along with	
+                API requests. If ``None``, then default info will be used.	
+                Generally, you only need to set this if you're developing	
+                your own client library.
 
         Raises:
             google.auth.exceptions.MutualTLSChannelError: If mutual TLS transport
@@ -238,6 +244,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
                 api_mtls_endpoint=client_options.api_endpoint,
                 client_cert_source=client_options.client_cert_source,
                 quota_project_id=client_options.quota_project_id,
+                client_info=client_info,
             )
 
     def create_connection(
@@ -1026,13 +1033,13 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
 
 
 try:
-    _client_info = gapic_v1.client_info.ClientInfo(
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
             "google-cloud-bigquery-connection",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
-    _client_info = gapic_v1.client_info.ClientInfo()
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
 __all__ = ("ConnectionServiceClient",)

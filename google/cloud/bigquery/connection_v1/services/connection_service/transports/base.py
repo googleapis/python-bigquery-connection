@@ -19,7 +19,7 @@ import abc
 import typing
 import pkg_resources
 
-from google import auth
+from google import auth  # type: ignore
 from google.api_core import exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
@@ -123,7 +123,7 @@ class ConnectionServiceTransport(abc.ABC):
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                     ),
                 ),
                 default_timeout=60.0,
@@ -136,7 +136,7 @@ class ConnectionServiceTransport(abc.ABC):
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                     ),
                 ),
                 default_timeout=60.0,
@@ -152,7 +152,7 @@ class ConnectionServiceTransport(abc.ABC):
                     maximum=60.0,
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
-                        exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                        exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
                     ),
                 ),
                 default_timeout=60.0,

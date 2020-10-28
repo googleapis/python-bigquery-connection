@@ -51,8 +51,46 @@ class ConnectionServiceAsyncClient:
     connection_path = staticmethod(ConnectionServiceClient.connection_path)
     parse_connection_path = staticmethod(ConnectionServiceClient.parse_connection_path)
 
+    common_billing_account_path = staticmethod(
+        ConnectionServiceClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        ConnectionServiceClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(ConnectionServiceClient.common_folder_path)
+    parse_common_folder_path = staticmethod(
+        ConnectionServiceClient.parse_common_folder_path
+    )
+
+    common_organization_path = staticmethod(
+        ConnectionServiceClient.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        ConnectionServiceClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(ConnectionServiceClient.common_project_path)
+    parse_common_project_path = staticmethod(
+        ConnectionServiceClient.parse_common_project_path
+    )
+
+    common_location_path = staticmethod(ConnectionServiceClient.common_location_path)
+    parse_common_location_path = staticmethod(
+        ConnectionServiceClient.parse_common_location_path
+    )
+
     from_service_account_file = ConnectionServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> ConnectionServiceTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            ConnectionServiceTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(ConnectionServiceClient).get_transport_class, type(ConnectionServiceClient)
@@ -157,7 +195,8 @@ class ConnectionServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, connection, connection_id]):
+        has_flattened_params = any([parent, connection, connection_id])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -233,7 +272,8 @@ class ConnectionServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -256,7 +296,7 @@ class ConnectionServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -315,7 +355,8 @@ class ConnectionServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -338,7 +379,7 @@ class ConnectionServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -417,7 +458,8 @@ class ConnectionServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name, connection, update_mask]):
+        has_flattened_params = any([name, connection, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -486,7 +528,8 @@ class ConnectionServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -509,7 +552,7 @@ class ConnectionServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -631,7 +674,8 @@ class ConnectionServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([resource]):
+        has_flattened_params = any([resource])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -643,13 +687,7 @@ class ConnectionServiceAsyncClient:
             request = iam_policy.GetIamPolicyRequest(**request)
 
         elif not request:
-            request = iam_policy.GetIamPolicyRequest()
-
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
-
-        if resource is not None:
-            request.resource = resource
+            request = iam_policy.GetIamPolicyRequest(resource=resource,)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -777,7 +815,8 @@ class ConnectionServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([resource]):
+        has_flattened_params = any([resource])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -789,13 +828,7 @@ class ConnectionServiceAsyncClient:
             request = iam_policy.SetIamPolicyRequest(**request)
 
         elif not request:
-            request = iam_policy.SetIamPolicyRequest()
-
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
-
-        if resource is not None:
-            request.resource = resource
+            request = iam_policy.SetIamPolicyRequest(resource=resource,)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -870,7 +903,8 @@ class ConnectionServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([resource, permissions]):
+        has_flattened_params = any([resource, permissions])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -882,16 +916,9 @@ class ConnectionServiceAsyncClient:
             request = iam_policy.TestIamPermissionsRequest(**request)
 
         elif not request:
-            request = iam_policy.TestIamPermissionsRequest()
-
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
-
-        if resource is not None:
-            request.resource = resource
-
-        if permissions:
-            request.permissions.extend(permissions)
+            request = iam_policy.TestIamPermissionsRequest(
+                resource=resource, permissions=permissions,
+            )
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

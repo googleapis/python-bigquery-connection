@@ -200,7 +200,7 @@ class CloudSqlProperties(proto.Message):
             ``project:location:instance``.
         database (str):
             Database name.
-        type (~.gcbc_connection.CloudSqlProperties.DatabaseType):
+        type_ (~.gcbc_connection.CloudSqlProperties.DatabaseType):
             Type of the Cloud SQL database.
         credential (~.gcbc_connection.CloudSqlCredential):
             Input only. Cloud SQL credential.
@@ -216,7 +216,7 @@ class CloudSqlProperties(proto.Message):
 
     database = proto.Field(proto.STRING, number=2)
 
-    type = proto.Field(proto.ENUM, number=3, enum=DatabaseType,)
+    type_ = proto.Field(proto.ENUM, number=3, enum=DatabaseType,)
 
     credential = proto.Field(proto.MESSAGE, number=4, message="CloudSqlCredential",)
 

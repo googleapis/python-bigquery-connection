@@ -31,4 +31,4 @@ def test_list_connections(project_id):
     parent = f"projects/{project_id}/locations/US"
     connections = list(client.list_connections(parent=parent))
 
-    assert len(connections) == 0
+    assert len(connections) >= 0

@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-bigquery-connection.git",
-        "sha": "f3ce3aa826173bf61b3b79803d0231c27f89e6fa"
+        "sha": "22f88cf041b8633f9244c4b057d8d6cf9e03461e"
       }
     },
     {
@@ -91,6 +91,7 @@
     "CONTRIBUTING.rst",
     "LICENSE",
     "MANIFEST.in",
+    "bigquery-connection-v1-py.tar.gz",
     "docs/_static/custom.css",
     "docs/_templates/layout.html",
     "docs/bigquery_connection_v1/services.rst",

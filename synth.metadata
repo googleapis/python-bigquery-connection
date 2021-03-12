@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-bigquery-connection.git",
-        "sha": "7eeb516191cf2878788dd4f62d59a1c7f5c983b1"
+        "sha": "414af1d702e7dc736c8996084a2e2e58d7819a99"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "89e3c509923819eb87bedc8331a823403d9dba55",
-        "internalRef": "351705536"
+        "sha": "dd372aa22ded7a8ba6f0e03a80e06358a3fa0907",
+        "internalRef": "347055288"
       }
     },
     {
@@ -42,7 +42,6 @@
     }
   ],
   "generatedFiles": [
-    ".coveragerc",
     ".flake8",
     ".github/CONTRIBUTING.md",
     ".github/ISSUE_TEMPLATE/bug_report.md",
@@ -95,7 +94,6 @@
     "MANIFEST.in",
     "docs/_static/custom.css",
     "docs/_templates/layout.html",
-    "docs/bigquery_connection_v1/connection_service.rst",
     "docs/bigquery_connection_v1/services.rst",
     "docs/bigquery_connection_v1/types.rst",
     "docs/conf.py",

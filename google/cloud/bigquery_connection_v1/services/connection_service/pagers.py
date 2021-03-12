@@ -24,7 +24,7 @@ class ListConnectionsPager:
     """A pager for iterating through ``list_connections`` requests.
 
     This class thinly wraps an initial
-    :class:`google.cloud.bigquery_connection_v1.types.ListConnectionsResponse` object, and
+    :class:`~.connection.ListConnectionsResponse` object, and
     provides an ``__iter__`` method to iterate through its
     ``connections`` field.
 
@@ -33,7 +33,7 @@ class ListConnectionsPager:
     through the ``connections`` field on the
     corresponding responses.
 
-    All the usual :class:`google.cloud.bigquery_connection_v1.types.ListConnectionsResponse`
+    All the usual :class:`~.connection.ListConnectionsResponse`
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
@@ -51,9 +51,9 @@ class ListConnectionsPager:
         Args:
             method (Callable): The method that was originally called, and
                 which instantiated this pager.
-            request (google.cloud.bigquery_connection_v1.types.ListConnectionsRequest):
+            request (:class:`~.connection.ListConnectionsRequest`):
                 The initial request object.
-            response (google.cloud.bigquery_connection_v1.types.ListConnectionsResponse):
+            response (:class:`~.connection.ListConnectionsResponse`):
                 The initial response object.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
@@ -86,7 +86,7 @@ class ListConnectionsAsyncPager:
     """A pager for iterating through ``list_connections`` requests.
 
     This class thinly wraps an initial
-    :class:`google.cloud.bigquery_connection_v1.types.ListConnectionsResponse` object, and
+    :class:`~.connection.ListConnectionsResponse` object, and
     provides an ``__aiter__`` method to iterate through its
     ``connections`` field.
 
@@ -95,7 +95,7 @@ class ListConnectionsAsyncPager:
     through the ``connections`` field on the
     corresponding responses.
 
-    All the usual :class:`google.cloud.bigquery_connection_v1.types.ListConnectionsResponse`
+    All the usual :class:`~.connection.ListConnectionsResponse`
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
@@ -113,9 +113,9 @@ class ListConnectionsAsyncPager:
         Args:
             method (Callable): The method that was originally called, and
                 which instantiated this pager.
-            request (google.cloud.bigquery_connection_v1.types.ListConnectionsRequest):
+            request (:class:`~.connection.ListConnectionsRequest`):
                 The initial request object.
-            response (google.cloud.bigquery_connection_v1.types.ListConnectionsResponse):
+            response (:class:`~.connection.ListConnectionsResponse`):
                 The initial response object.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.

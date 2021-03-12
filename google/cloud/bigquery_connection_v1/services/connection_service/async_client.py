@@ -80,7 +80,6 @@ class ConnectionServiceAsyncClient:
         ConnectionServiceClient.parse_common_location_path
     )
 
-    from_service_account_info = ConnectionServiceClient.from_service_account_info
     from_service_account_file = ConnectionServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -159,17 +158,16 @@ class ConnectionServiceAsyncClient:
         r"""Creates a new connection.
 
         Args:
-            request (:class:`google.cloud.bigquery_connection_v1.types.CreateConnectionRequest`):
+            request (:class:`~.gcbc_connection.CreateConnectionRequest`):
                 The request object. The request for
                 [ConnectionService.CreateConnection][google.cloud.bigquery.connection.v1.ConnectionService.CreateConnection].
             parent (:class:`str`):
                 Required. Parent resource name. Must be in the format
                 ``projects/{project_id}/locations/{location_id}``
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            connection (:class:`google.cloud.bigquery_connection_v1.types.Connection`):
+            connection (:class:`~.gcbc_connection.Connection`):
                 Required. Connection to create.
                 This corresponds to the ``connection`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -177,7 +175,6 @@ class ConnectionServiceAsyncClient:
             connection_id (:class:`str`):
                 Optional. Connection id that should
                 be assigned to the created connection.
-
                 This corresponds to the ``connection_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -189,7 +186,7 @@ class ConnectionServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.bigquery_connection_v1.types.Connection:
+            ~.gcbc_connection.Connection:
                 Configuration parameters to establish
                 connection with an external data source,
                 except the credential attributes.
@@ -249,13 +246,12 @@ class ConnectionServiceAsyncClient:
         r"""Returns specified connection.
 
         Args:
-            request (:class:`google.cloud.bigquery_connection_v1.types.GetConnectionRequest`):
+            request (:class:`~.connection.GetConnectionRequest`):
                 The request object. The request for
                 [ConnectionService.GetConnection][google.cloud.bigquery.connection.v1.ConnectionService.GetConnection].
             name (:class:`str`):
                 Required. Name of the requested connection, for example:
                 ``projects/{project_id}/locations/{location_id}/connections/{connection_id}``
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -267,7 +263,7 @@ class ConnectionServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.bigquery_connection_v1.types.Connection:
+            ~.connection.Connection:
                 Configuration parameters to establish
                 connection with an external data source,
                 except the credential attributes.
@@ -331,13 +327,12 @@ class ConnectionServiceAsyncClient:
         r"""Returns a list of connections in the given project.
 
         Args:
-            request (:class:`google.cloud.bigquery_connection_v1.types.ListConnectionsRequest`):
+            request (:class:`~.connection.ListConnectionsRequest`):
                 The request object. The request for
                 [ConnectionService.ListConnections][google.cloud.bigquery.connection.v1.ConnectionService.ListConnections].
             parent (:class:`str`):
                 Required. Parent resource name. Must be in the form:
                 ``projects/{project_id}/locations/{location_id}``
-
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -349,7 +344,7 @@ class ConnectionServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.bigquery_connection_v1.services.connection_service.pagers.ListConnectionsAsyncPager:
+            ~.pagers.ListConnectionsAsyncPager:
                 The response for
                 [ConnectionService.ListConnections][google.cloud.bigquery.connection.v1.ConnectionService.ListConnections].
 
@@ -425,27 +420,24 @@ class ConnectionServiceAsyncClient:
         are in the update field mask.
 
         Args:
-            request (:class:`google.cloud.bigquery_connection_v1.types.UpdateConnectionRequest`):
+            request (:class:`~.gcbc_connection.UpdateConnectionRequest`):
                 The request object. The request for
                 [ConnectionService.UpdateConnection][google.cloud.bigquery.connection.v1.ConnectionService.UpdateConnection].
             name (:class:`str`):
                 Required. Name of the connection to update, for example:
                 ``projects/{project_id}/locations/{location_id}/connections/{connection_id}``
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            connection (:class:`google.cloud.bigquery_connection_v1.types.Connection`):
+            connection (:class:`~.gcbc_connection.Connection`):
                 Required. Connection containing the
                 updated fields.
-
                 This corresponds to the ``connection`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (:class:`google.protobuf.field_mask_pb2.FieldMask`):
+            update_mask (:class:`~.field_mask.FieldMask`):
                 Required. Update mask for the
                 connection fields to be updated.
-
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -457,7 +449,7 @@ class ConnectionServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.bigquery_connection_v1.types.Connection:
+            ~.gcbc_connection.Connection:
                 Configuration parameters to establish
                 connection with an external data source,
                 except the credential attributes.
@@ -517,13 +509,12 @@ class ConnectionServiceAsyncClient:
         r"""Deletes connection and associated credential.
 
         Args:
-            request (:class:`google.cloud.bigquery_connection_v1.types.DeleteConnectionRequest`):
+            request (:class:`~.connection.DeleteConnectionRequest`):
                 The request object. The request for
                 [ConnectionService.DeleteConnectionRequest][].
             name (:class:`str`):
                 Required. Name of the deleted connection, for example:
                 ``projects/{project_id}/locations/{location_id}/connections/{connection_id}``
-
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -593,7 +584,7 @@ class ConnectionServiceAsyncClient:
         not have a policy set.
 
         Args:
-            request (:class:`google.iam.v1.iam_policy_pb2.GetIamPolicyRequest`):
+            request (:class:`~.iam_policy.GetIamPolicyRequest`):
                 The request object. Request message for `GetIamPolicy`
                 method.
             resource (:class:`str`):
@@ -601,7 +592,6 @@ class ConnectionServiceAsyncClient:
                 policy is being requested. See the
                 operation documentation for the
                 appropriate value for this field.
-
                 This corresponds to the ``resource`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -613,62 +603,72 @@ class ConnectionServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.iam.v1.policy_pb2.Policy:
-                Defines an Identity and Access Management (IAM) policy. It is used to
-                   specify access control policies for Cloud Platform
-                   resources.
+            ~.policy.Policy:
+                Defines an Identity and Access Management (IAM) policy.
+                It is used to specify access control policies for Cloud
+                Platform resources.
 
-                   A Policy is a collection of bindings. A binding binds
-                   one or more members to a single role. Members can be
-                   user accounts, service accounts, Google groups, and
-                   domains (such as G Suite). A role is a named list of
-                   permissions (defined by IAM or configured by users).
-                   A binding can optionally specify a condition, which
-                   is a logic expression that further constrains the
-                   role binding based on attributes about the request
-                   and/or target resource.
+                A ``Policy`` is a collection of ``bindings``. A
+                ``binding`` binds one or more ``members`` to a single
+                ``role``. Members can be user accounts, service
+                accounts, Google groups, and domains (such as G Suite).
+                A ``role`` is a named list of permissions (defined by
+                IAM or configured by users). A ``binding`` can
+                optionally specify a ``condition``, which is a logic
+                expression that further constrains the role binding
+                based on attributes about the request and/or target
+                resource.
 
-                   **JSON Example**
+                **JSON Example**
 
-                      {
-                         "bindings": [
-                            {
-                               "role":
-                               "roles/resourcemanager.organizationAdmin",
-                               "members": [ "user:mike@example.com",
-                               "group:admins@example.com",
-                               "domain:google.com",
-                               "serviceAccount:my-project-id@appspot.gserviceaccount.com"
-                               ]
+                ::
 
-                            }, { "role":
-                            "roles/resourcemanager.organizationViewer",
-                            "members": ["user:eve@example.com"],
-                            "condition": { "title": "expirable access",
-                            "description": "Does not grant access after
-                            Sep 2020", "expression": "request.time <
-                            timestamp('2020-10-01T00:00:00.000Z')", } }
+                    {
+                      "bindings": [
+                        {
+                          "role": "roles/resourcemanager.organizationAdmin",
+                          "members": [
+                            "user:mike@example.com",
+                            "group:admins@example.com",
+                            "domain:google.com",
+                            "serviceAccount:my-project-id@appspot.gserviceaccount.com"
+                          ]
+                        },
+                        {
+                          "role": "roles/resourcemanager.organizationViewer",
+                          "members": ["user:eve@example.com"],
+                          "condition": {
+                            "title": "expirable access",
+                            "description": "Does not grant access after Sep 2020",
+                            "expression": "request.time <
+                            timestamp('2020-10-01T00:00:00.000Z')",
+                          }
+                        }
+                      ]
+                    }
 
-                         ]
+                **YAML Example**
 
-                      }
+                ::
 
-                   **YAML Example**
+                    bindings:
+                    - members:
+                      - user:mike@example.com
+                      - group:admins@example.com
+                      - domain:google.com
+                      - serviceAccount:my-project-id@appspot.gserviceaccount.com
+                      role: roles/resourcemanager.organizationAdmin
+                    - members:
+                      - user:eve@example.com
+                      role: roles/resourcemanager.organizationViewer
+                      condition:
+                        title: expirable access
+                        description: Does not grant access after Sep 2020
+                        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')
 
-                      bindings: - members: - user:\ mike@example.com -
-                      group:\ admins@example.com - domain:google.com -
-                      serviceAccount:\ my-project-id@appspot.gserviceaccount.com
-                      role: roles/resourcemanager.organizationAdmin -
-                      members: - user:\ eve@example.com role:
-                      roles/resourcemanager.organizationViewer
-                      condition: title: expirable access description:
-                      Does not grant access after Sep 2020 expression:
-                      request.time <
-                      timestamp('2020-10-01T00:00:00.000Z')
-
-                   For a description of IAM and its features, see the
-                   [IAM developer's
-                   guide](\ https://cloud.google.com/iam/docs).
+                For a description of IAM and its features, see the `IAM
+                developer's
+                guide <https://cloud.google.com/iam/docs>`__.
 
         """
         # Create or coerce a protobuf request object.
@@ -725,7 +725,7 @@ class ConnectionServiceAsyncClient:
         ``PERMISSION_DENIED`` errors.
 
         Args:
-            request (:class:`google.iam.v1.iam_policy_pb2.SetIamPolicyRequest`):
+            request (:class:`~.iam_policy.SetIamPolicyRequest`):
                 The request object. Request message for `SetIamPolicy`
                 method.
             resource (:class:`str`):
@@ -733,7 +733,6 @@ class ConnectionServiceAsyncClient:
                 policy is being specified. See the
                 operation documentation for the
                 appropriate value for this field.
-
                 This corresponds to the ``resource`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -745,62 +744,72 @@ class ConnectionServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.iam.v1.policy_pb2.Policy:
-                Defines an Identity and Access Management (IAM) policy. It is used to
-                   specify access control policies for Cloud Platform
-                   resources.
+            ~.policy.Policy:
+                Defines an Identity and Access Management (IAM) policy.
+                It is used to specify access control policies for Cloud
+                Platform resources.
 
-                   A Policy is a collection of bindings. A binding binds
-                   one or more members to a single role. Members can be
-                   user accounts, service accounts, Google groups, and
-                   domains (such as G Suite). A role is a named list of
-                   permissions (defined by IAM or configured by users).
-                   A binding can optionally specify a condition, which
-                   is a logic expression that further constrains the
-                   role binding based on attributes about the request
-                   and/or target resource.
+                A ``Policy`` is a collection of ``bindings``. A
+                ``binding`` binds one or more ``members`` to a single
+                ``role``. Members can be user accounts, service
+                accounts, Google groups, and domains (such as G Suite).
+                A ``role`` is a named list of permissions (defined by
+                IAM or configured by users). A ``binding`` can
+                optionally specify a ``condition``, which is a logic
+                expression that further constrains the role binding
+                based on attributes about the request and/or target
+                resource.
 
-                   **JSON Example**
+                **JSON Example**
 
-                      {
-                         "bindings": [
-                            {
-                               "role":
-                               "roles/resourcemanager.organizationAdmin",
-                               "members": [ "user:mike@example.com",
-                               "group:admins@example.com",
-                               "domain:google.com",
-                               "serviceAccount:my-project-id@appspot.gserviceaccount.com"
-                               ]
+                ::
 
-                            }, { "role":
-                            "roles/resourcemanager.organizationViewer",
-                            "members": ["user:eve@example.com"],
-                            "condition": { "title": "expirable access",
-                            "description": "Does not grant access after
-                            Sep 2020", "expression": "request.time <
-                            timestamp('2020-10-01T00:00:00.000Z')", } }
+                    {
+                      "bindings": [
+                        {
+                          "role": "roles/resourcemanager.organizationAdmin",
+                          "members": [
+                            "user:mike@example.com",
+                            "group:admins@example.com",
+                            "domain:google.com",
+                            "serviceAccount:my-project-id@appspot.gserviceaccount.com"
+                          ]
+                        },
+                        {
+                          "role": "roles/resourcemanager.organizationViewer",
+                          "members": ["user:eve@example.com"],
+                          "condition": {
+                            "title": "expirable access",
+                            "description": "Does not grant access after Sep 2020",
+                            "expression": "request.time <
+                            timestamp('2020-10-01T00:00:00.000Z')",
+                          }
+                        }
+                      ]
+                    }
 
-                         ]
+                **YAML Example**
 
-                      }
+                ::
 
-                   **YAML Example**
+                    bindings:
+                    - members:
+                      - user:mike@example.com
+                      - group:admins@example.com
+                      - domain:google.com
+                      - serviceAccount:my-project-id@appspot.gserviceaccount.com
+                      role: roles/resourcemanager.organizationAdmin
+                    - members:
+                      - user:eve@example.com
+                      role: roles/resourcemanager.organizationViewer
+                      condition:
+                        title: expirable access
+                        description: Does not grant access after Sep 2020
+                        expression: request.time < timestamp('2020-10-01T00:00:00.000Z')
 
-                      bindings: - members: - user:\ mike@example.com -
-                      group:\ admins@example.com - domain:google.com -
-                      serviceAccount:\ my-project-id@appspot.gserviceaccount.com
-                      role: roles/resourcemanager.organizationAdmin -
-                      members: - user:\ eve@example.com role:
-                      roles/resourcemanager.organizationViewer
-                      condition: title: expirable access description:
-                      Does not grant access after Sep 2020 expression:
-                      request.time <
-                      timestamp('2020-10-01T00:00:00.000Z')
-
-                   For a description of IAM and its features, see the
-                   [IAM developer's
-                   guide](\ https://cloud.google.com/iam/docs).
+                For a description of IAM and its features, see the `IAM
+                developer's
+                guide <https://cloud.google.com/iam/docs>`__.
 
         """
         # Create or coerce a protobuf request object.
@@ -861,7 +870,7 @@ class ConnectionServiceAsyncClient:
         warning.
 
         Args:
-            request (:class:`google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest`):
+            request (:class:`~.iam_policy.TestIamPermissionsRequest`):
                 The request object. Request message for
                 `TestIamPermissions` method.
             resource (:class:`str`):
@@ -869,7 +878,6 @@ class ConnectionServiceAsyncClient:
                 policy detail is being requested. See
                 the operation documentation for the
                 appropriate value for this field.
-
                 This corresponds to the ``resource`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -878,7 +886,6 @@ class ConnectionServiceAsyncClient:
                 Permissions with wildcards (such as '*' or 'storage.*')
                 are not allowed. For more information see `IAM
                 Overview <https://cloud.google.com/iam/docs/overview#permissions>`__.
-
                 This corresponds to the ``permissions`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -890,8 +897,8 @@ class ConnectionServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse:
-                Response message for TestIamPermissions method.
+            ~.iam_policy.TestIamPermissionsResponse:
+                Response message for ``TestIamPermissions`` method.
         """
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have

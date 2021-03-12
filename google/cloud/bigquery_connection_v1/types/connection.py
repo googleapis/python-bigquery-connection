@@ -50,7 +50,7 @@ class CreateConnectionRequest(proto.Message):
         connection_id (str):
             Optional. Connection id that should be
             assigned to the created connection.
-        connection (google.cloud.bigquery_connection_v1.types.Connection):
+        connection (~.gcbc_connection.Connection):
             Required. Connection to create.
     """
 
@@ -102,7 +102,7 @@ class ListConnectionsResponse(proto.Message):
     Attributes:
         next_page_token (str):
             Next page token.
-        connections (Sequence[google.cloud.bigquery_connection_v1.types.Connection]):
+        connections (Sequence[~.gcbc_connection.Connection]):
             List of connections.
     """
 
@@ -123,10 +123,10 @@ class UpdateConnectionRequest(proto.Message):
         name (str):
             Required. Name of the connection to update, for example:
             ``projects/{project_id}/locations/{location_id}/connections/{connection_id}``
-        connection (google.cloud.bigquery_connection_v1.types.Connection):
+        connection (~.gcbc_connection.Connection):
             Required. Connection containing the updated
             fields.
-        update_mask (google.protobuf.field_mask_pb2.FieldMask):
+        update_mask (~.field_mask.FieldMask):
             Required. Update mask for the connection
             fields to be updated.
     """
@@ -163,9 +163,9 @@ class Connection(proto.Message):
             connection.
         description (str):
             User provided description.
-        cloud_sql (google.cloud.bigquery_connection_v1.types.CloudSqlProperties):
+        cloud_sql (~.gcbc_connection.CloudSqlProperties):
             Cloud SQL properties.
-        aws (google.cloud.bigquery_connection_v1.types.AwsProperties):
+        aws (~.gcbc_connection.AwsProperties):
             Amazon Web Services (AWS) properties.
         creation_time (int):
             Output only. The creation timestamp of the
@@ -208,9 +208,9 @@ class CloudSqlProperties(proto.Message):
             ``project:location:instance``.
         database (str):
             Database name.
-        type_ (google.cloud.bigquery_connection_v1.types.CloudSqlProperties.DatabaseType):
+        type_ (~.gcbc_connection.CloudSqlProperties.DatabaseType):
             Type of the Cloud SQL database.
-        credential (google.cloud.bigquery_connection_v1.types.CloudSqlCredential):
+        credential (~.gcbc_connection.CloudSqlCredential):
             Input only. Cloud SQL credential.
     """
 
@@ -248,7 +248,7 @@ class AwsProperties(proto.Message):
     r"""Connection properties specific to Amazon Web Services (AWS).
 
     Attributes:
-        cross_account_role (google.cloud.bigquery_connection_v1.types.AwsCrossAccountRole):
+        cross_account_role (~.gcbc_connection.AwsCrossAccountRole):
             Authentication using Google owned AWS IAM
             user's access key to assume into customer's AWS
             IAM Role.

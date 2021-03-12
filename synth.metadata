@@ -11,8 +11,8 @@
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "5e5da388f773d3da15276452e934208a96a7a58e",
-        "internalRef": "351656488"
+        "sha": "89e3c509923819eb87bedc8331a823403d9dba55",
+        "internalRef": "351705536"
       }
     },
     {
@@ -93,7 +93,6 @@
     "CONTRIBUTING.rst",
     "LICENSE",
     "MANIFEST.in",
-    "bigquery-connection-v1-py.tar.gz",
     "docs/_static/custom.css",
     "docs/_templates/layout.html",
     "docs/bigquery_connection_v1/connection_service.rst",

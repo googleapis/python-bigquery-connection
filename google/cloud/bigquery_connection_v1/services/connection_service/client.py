@@ -36,7 +36,7 @@ from google.cloud.bigquery_connection_v1.services.connection_service import page
 from google.cloud.bigquery_connection_v1.types import connection
 from google.cloud.bigquery_connection_v1.types import connection as gcbc_connection
 from google.iam.v1 import iam_policy_pb2 as iam_policy  # type: ignore
-from google.iam.v1 import policy_pb2 as policy  # type: ignore
+from google.iam.v1 import policy_pb2 as gi_policy  # type: ignore
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 from .transports.base import ConnectionServiceTransport, DEFAULT_CLIENT_INFO
@@ -772,7 +772,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> policy.Policy:
+    ) -> gi_policy.Policy:
         r"""Gets the access control policy for a resource.
         Returns an empty policy if the resource exists and does
         not have a policy set.
@@ -901,7 +901,7 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> policy.Policy:
+    ) -> gi_policy.Policy:
         r"""Sets the access control policy on the specified resource.
         Replaces any existing policy.
 

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,7 @@
 #
 
 from .services.connection_service import ConnectionServiceClient
+
 from .types.connection import AwsCrossAccountRole
 from .types.connection import AwsProperties
 from .types.connection import CloudSqlCredential
@@ -28,8 +28,8 @@ from .types.connection import ListConnectionsRequest
 from .types.connection import ListConnectionsResponse
 from .types.connection import UpdateConnectionRequest
 
-
 __all__ = (
+    "ConnectionServiceClient",
     "AwsCrossAccountRole",
     "AwsProperties",
     "CloudSqlCredential",
@@ -41,5 +41,4 @@ __all__ = (
     "ListConnectionsRequest",
     "ListConnectionsResponse",
     "UpdateConnectionRequest",
-    "ConnectionServiceClient",
 )

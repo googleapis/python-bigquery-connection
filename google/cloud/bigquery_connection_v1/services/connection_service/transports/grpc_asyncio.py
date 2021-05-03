@@ -30,7 +30,7 @@ from grpc.experimental import aio  # type: ignore
 from google.cloud.bigquery_connection_v1.types import connection
 from google.cloud.bigquery_connection_v1.types import connection as gcbc_connection
 from google.iam.v1 import iam_policy_pb2 as iam_policy  # type: ignore
-from google.iam.v1 import policy_pb2 as policy  # type: ignore
+from google.iam.v1 import policy_pb2 as gi_policy  # type: ignore
 from google.protobuf import empty_pb2 as empty  # type: ignore
 
 from .base import ConnectionServiceTransport, DEFAULT_CLIENT_INFO
@@ -371,7 +371,7 @@ class ConnectionServiceGrpcAsyncIOTransport(ConnectionServiceTransport):
     @property
     def get_iam_policy(
         self,
-    ) -> Callable[[iam_policy.GetIamPolicyRequest], Awaitable[policy.Policy]]:
+    ) -> Callable[[iam_policy.GetIamPolicyRequest], Awaitable[gi_policy.Policy]]:
         r"""Return a callable for the get iam policy method over gRPC.
 
         Gets the access control policy for a resource.
@@ -392,14 +392,14 @@ class ConnectionServiceGrpcAsyncIOTransport(ConnectionServiceTransport):
             self._stubs["get_iam_policy"] = self.grpc_channel.unary_unary(
                 "/google.cloud.bigquery.connection.v1.ConnectionService/GetIamPolicy",
                 request_serializer=iam_policy.GetIamPolicyRequest.SerializeToString,
-                response_deserializer=policy.Policy.FromString,
+                response_deserializer=gi_policy.Policy.FromString,
             )
         return self._stubs["get_iam_policy"]
 
     @property
     def set_iam_policy(
         self,
-    ) -> Callable[[iam_policy.SetIamPolicyRequest], Awaitable[policy.Policy]]:
+    ) -> Callable[[iam_policy.SetIamPolicyRequest], Awaitable[gi_policy.Policy]]:
         r"""Return a callable for the set iam policy method over gRPC.
 
         Sets the access control policy on the specified resource.
@@ -422,7 +422,7 @@ class ConnectionServiceGrpcAsyncIOTransport(ConnectionServiceTransport):
             self._stubs["set_iam_policy"] = self.grpc_channel.unary_unary(
                 "/google.cloud.bigquery.connection.v1.ConnectionService/SetIamPolicy",
                 request_serializer=iam_policy.SetIamPolicyRequest.SerializeToString,
-                response_deserializer=policy.Policy.FromString,
+                response_deserializer=gi_policy.Policy.FromString,
             )
         return self._stubs["set_iam_policy"]
 

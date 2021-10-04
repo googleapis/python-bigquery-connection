@@ -11,6 +11,6 @@
     "distribution_name": "google-cloud-bigquery-connection",
     "api_id": "bigqueryconnection.googleapis.com",
     "requires_billing": true,
-    "default_version": "",
-    "codeowner_team": ""
+    "default_version": "v1",
+    "codeowner_team": "@googleapis/api-bigquery"
 }

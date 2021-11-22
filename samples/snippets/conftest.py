@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import datetime
+# import datetime
 import os
-import time
+
+# import time
 
 from google.cloud.bigquery_connection_v1.services import connection_service
 import pytest
@@ -24,6 +25,19 @@ import pytest
 def project_id() -> str:
     return os.environ["GOOGLE_CLOUD_PROJECT"]
 
+
 @pytest.fixture(scope="session")
 def connection_client() -> connection_service.ConnectionServiceClient:
     return connection_service.ConnectionServiceClient()
+
+
+@pytest.fixture(scope="session")
+def location() -> str:
+    return "US"
+
+
+@pytest.fixture(scope="session")
+def location_path(project_id: str, location: str) -> str:
+    return connection_service.ConnectionServiceClient.common_location_path(
+        project_id, location
+    )

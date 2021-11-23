@@ -12,10 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# import datetime
 import os
-
-# import time
 
 from google.cloud.bigquery_connection_v1.services import connection_service
 import pytest
@@ -34,10 +31,3 @@ def connection_client() -> connection_service.ConnectionServiceClient:
 @pytest.fixture(scope="session")
 def location() -> str:
     return "US"
-
-
-@pytest.fixture(scope="session")
-def location_path(project_id: str, location: str) -> str:
-    return connection_service.ConnectionServiceClient.common_location_path(
-        project_id, location
-    )

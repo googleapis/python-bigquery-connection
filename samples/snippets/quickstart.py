@@ -45,4 +45,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     main(project_id=args.project_id, location=args.location)
 
-# [END bigqueryreservation_quickstart]
+# [END bigqueryconnection_quickstart]

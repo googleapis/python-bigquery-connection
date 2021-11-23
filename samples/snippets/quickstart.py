@@ -13,23 +13,20 @@
 # limitations under the License.
 
 # [START bigqueryconnection_quickstart]
-import argparse
 
 from google.cloud import bigquery_connection_v1 as bq_connection
 
 
 def main(project_id: str = "your-project-id", location: str = "US") -> None:
     # Constructs client for interacting with the service
-    client = bq_connection.ConnectionServiceClient()
-    list_connections(client, project_id, location)
+    list_connections(project_id, location)
 
 
 def list_connections(
-    client: bq_connection.ConnectionServiceClient,
-    project_id: str = "your-project-id",
-    location: str = "US",
+    project_id: str = "your-project-id", location: str = "US",
 ) -> None:
     """Prints details and summary information about connections for a given admin project and location"""
+    client = bq_connection.ConnectionServiceClient()
     print(f"List of connections in project {project_id} in location {location}")
     req = bq_connection.ListConnectionsRequest(
         parent=client.common_location_path(project_id, location)
@@ -37,12 +34,5 @@ def list_connections(
     for connection in client.list_connections(request=req):
         print(f"\tConnection {connection.friendly_name} ({connection.name})")
 
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--project_id", type=str)
-    parser.add_argument("--location", default="US", type=str)
-    args = parser.parse_args()
-    main(project_id=args.project_id, location=args.location)
 
 # [END bigqueryconnection_quickstart]

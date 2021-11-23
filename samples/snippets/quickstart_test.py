@@ -17,7 +17,9 @@ import pytest
 from . import quickstart
 
 
-def test_quickstart(capsys: pytest.CaptureFixture, project_id: str) -> None:
-    quickstart.main(project_id)
+def test_quickstart(
+    capsys: pytest.CaptureFixture, project_id: str, location: str
+) -> None:
+    quickstart.main(project_id, location)
     out, _ = capsys.readouterr()
     assert "List of connections in project" in out

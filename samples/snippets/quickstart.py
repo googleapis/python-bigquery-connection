@@ -18,13 +18,6 @@ from google.cloud import bigquery_connection_v1 as bq_connection
 
 
 def main(project_id: str = "your-project-id", location: str = "US") -> None:
-    # Constructs client for interacting with the service
-    list_connections(project_id, location)
-
-
-def list_connections(
-    project_id: str = "your-project-id", location: str = "US",
-) -> None:
     """Prints details and summary information about connections for a given admin project and location"""
     client = bq_connection.ConnectionServiceClient()
     print(f"List of connections in project {project_id} in location {location}")

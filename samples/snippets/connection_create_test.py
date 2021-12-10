@@ -12,3 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import pytest
+
+from . import connection_create
+
+
+def test_connection_create(capsys: pytest.CaptureFixture) -> None:
+    connection_create.main()
+    out, _ = capsys.readouterr()
+    assert "Created connection successfully:" in out

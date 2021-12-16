@@ -19,7 +19,26 @@ from google.cloud.bigquery_connection_v1 import types as connection_types
 """This sample shows how to create a BigQuery connection with a Cloud MySql database"""
 
 
-def main() -> connection_types.Connection:
+def main(
+    project_id: str,
+    location: str,
+    connection_id: str,
+    database: str,
+    instance: str,
+    instance_location: str,
+    username: str,
+    password: str,
+) -> connection_types.Connection:
+    # [START_EXCLUDE]
+    original_project_id = project_id
+    original_location = location
+    original_connection_id = connection_id
+    original_database = database
+    original_instance = instance
+    original_instance_location = instance_location
+    original_username = username
+    original_password = password
+    # [END_EXCLUDE]
     # TODO(developer): Set project_id to the project ID containing the
     # connection.
     project_id = "your-project-id"
@@ -40,6 +59,18 @@ def main() -> connection_types.Connection:
     # TODO(developer): Set password to the database password.
     password = "my-password"
     instance_id = f"{project_id}:{instance_location}:{instance}"
+
+    # [START_EXCLUDE]
+    project_id = original_project_id
+    location = original_location
+    connection_id = original_connection_id
+    database = original_database
+    instance = original_instance
+    instance_location = original_instance_location
+    username = original_username
+    password = original_password
+    instance_id = f"{project_id}:{instance_location}:{instance}"
+    # [END_EXCLUDE]
     cloud_sql_credential = bq_connection.CloudSqlCredential()
     cloud_sql_credential.username = username
     cloud_sql_credential.password = password

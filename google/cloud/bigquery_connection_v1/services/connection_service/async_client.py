@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Sequence, Tuple, Type, Union
+from typing import Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -110,6 +110,42 @@ class ConnectionServiceAsyncClient:
 
     from_service_account_json = from_service_account_file
 
+    @classmethod
+    def get_mtls_endpoint_and_cert_source(
+        cls, client_options: Optional[ClientOptions] = None
+    ):
+        """Return the API endpoint and client cert source for mutual TLS.
+
+        The client cert source is determined in the following order:
+        (1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is not "true", the
+        client cert source is None.
+        (2) if `client_options.client_cert_source` is provided, use the provided one; if the
+        default client cert source exists, use the default one; otherwise the client cert
+        source is None.
+
+        The API endpoint is determined in the following order:
+        (1) if `client_options.api_endpoint` if provided, use the provided one.
+        (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
+        default mTLS endpoint; if the environment variabel is "never", use the default API
+        endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+        use the default API endpoint.
+
+        More details can be found at https://google.aip.dev/auth/4114.
+
+        Args:
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+                client. Only the `api_endpoint` and `client_cert_source` properties may be used
+                in this method.
+
+        Returns:
+            Tuple[str, Callable[[], Tuple[bytes, bytes]]]: returns the API endpoint and the
+                client cert source to use.
+
+        Raises:
+            google.auth.exceptions.MutualTLSChannelError: If any errors happen.
+        """
+        return ConnectionServiceClient.get_mtls_endpoint_and_cert_source(client_options)  # type: ignore
+
     @property
     def transport(self) -> ConnectionServiceTransport:
         """Returns the transport used by the client instance.
@@ -183,6 +219,25 @@ class ConnectionServiceAsyncClient:
     ) -> gcbc_connection.Connection:
         r"""Creates a new connection.
 
+        .. code-block:: python
+
+            from google.cloud import bigquery_connection_v1
+
+            def sample_create_connection():
+                # Create a client
+                client = bigquery_connection_v1.ConnectionServiceClient()
+
+                # Initialize request argument(s)
+                request = bigquery_connection_v1.CreateConnectionRequest(
+                    parent="parent_value",
+                )
+
+                # Make the request
+                response = client.create_connection(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
             request (Union[google.cloud.bigquery_connection_v1.types.CreateConnectionRequest, dict]):
                 The request object. The request for
@@ -220,7 +275,7 @@ class ConnectionServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, connection, connection_id])
         if request is not None and has_flattened_params:
@@ -255,7 +310,12 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
@@ -270,6 +330,25 @@ class ConnectionServiceAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> connection.Connection:
         r"""Returns specified connection.
+
+        .. code-block:: python
+
+            from google.cloud import bigquery_connection_v1
+
+            def sample_get_connection():
+                # Create a client
+                client = bigquery_connection_v1.ConnectionServiceClient()
+
+                # Initialize request argument(s)
+                request = bigquery_connection_v1.GetConnectionRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.get_connection(request=request)
+
+                # Handle the response
+                print(response)
 
         Args:
             request (Union[google.cloud.bigquery_connection_v1.types.GetConnectionRequest, dict]):
@@ -296,7 +375,7 @@ class ConnectionServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -337,7 +416,12 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
@@ -352,6 +436,27 @@ class ConnectionServiceAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListConnectionsAsyncPager:
         r"""Returns a list of connections in the given project.
+
+        .. code-block:: python
+
+            from google.cloud import bigquery_connection_v1
+
+            def sample_list_connections():
+                # Create a client
+                client = bigquery_connection_v1.ConnectionServiceClient()
+
+                # Initialize request argument(s)
+                request = bigquery_connection_v1.ListConnectionsRequest(
+                    parent="parent_value",
+                    page_size=951,
+                )
+
+                # Make the request
+                page_result = client.list_connections(request=request)
+
+                # Handle the response
+                for response in page_result:
+                    print(response)
 
         Args:
             request (Union[google.cloud.bigquery_connection_v1.types.ListConnectionsRequest, dict]):
@@ -380,7 +485,7 @@ class ConnectionServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
@@ -421,12 +526,20 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListConnectionsAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
@@ -446,6 +559,26 @@ class ConnectionServiceAsyncClient:
         r"""Updates the specified connection. For security
         reasons, also resets credential if connection properties
         are in the update field mask.
+
+
+        .. code-block:: python
+
+            from google.cloud import bigquery_connection_v1
+
+            def sample_update_connection():
+                # Create a client
+                client = bigquery_connection_v1.ConnectionServiceClient()
+
+                # Initialize request argument(s)
+                request = bigquery_connection_v1.UpdateConnectionRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                response = client.update_connection(request=request)
+
+                # Handle the response
+                print(response)
 
         Args:
             request (Union[google.cloud.bigquery_connection_v1.types.UpdateConnectionRequest, dict]):
@@ -486,7 +619,7 @@ class ConnectionServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, connection, update_mask])
         if request is not None and has_flattened_params:
@@ -521,7 +654,12 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
@@ -536,6 +674,22 @@ class ConnectionServiceAsyncClient:
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> None:
         r"""Deletes connection and associated credential.
+
+        .. code-block:: python
+
+            from google.cloud import bigquery_connection_v1
+
+            def sample_delete_connection():
+                # Create a client
+                client = bigquery_connection_v1.ConnectionServiceClient()
+
+                # Initialize request argument(s)
+                request = bigquery_connection_v1.DeleteConnectionRequest(
+                    name="name_value",
+                )
+
+                # Make the request
+                client.delete_connection(request=request)
 
         Args:
             request (Union[google.cloud.bigquery_connection_v1.types.DeleteConnectionRequest, dict]):
@@ -555,7 +709,7 @@ class ConnectionServiceAsyncClient:
                 sent along with the request as metadata.
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -597,7 +751,10 @@ class ConnectionServiceAsyncClient:
 
         # Send the request.
         await rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
     async def get_iam_policy(
@@ -612,6 +769,26 @@ class ConnectionServiceAsyncClient:
         r"""Gets the access control policy for a resource.
         Returns an empty policy if the resource exists and does
         not have a policy set.
+
+
+        .. code-block:: python
+
+            from google.cloud import bigquery_connection_v1
+
+            def sample_get_iam_policy():
+                # Create a client
+                client = bigquery_connection_v1.ConnectionServiceClient()
+
+                # Initialize request argument(s)
+                request = bigquery_connection_v1.GetIamPolicyRequest(
+                    resource="resource_value",
+                )
+
+                # Make the request
+                response = client.get_iam_policy(request=request)
+
+                # Handle the response
+                print(response)
 
         Args:
             request (Union[google.iam.v1.iam_policy_pb2.GetIamPolicyRequest, dict]):
@@ -692,7 +869,7 @@ class ConnectionServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([resource])
         if request is not None and has_flattened_params:
@@ -706,7 +883,9 @@ class ConnectionServiceAsyncClient:
         if isinstance(request, dict):
             request = iam_policy_pb2.GetIamPolicyRequest(**request)
         elif not request:
-            request = iam_policy_pb2.GetIamPolicyRequest(resource=resource,)
+            request = iam_policy_pb2.GetIamPolicyRequest(
+                resource=resource,
+            )
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -723,7 +902,12 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
@@ -742,6 +926,26 @@ class ConnectionServiceAsyncClient:
 
         Can return ``NOT_FOUND``, ``INVALID_ARGUMENT``, and
         ``PERMISSION_DENIED`` errors.
+
+
+        .. code-block:: python
+
+            from google.cloud import bigquery_connection_v1
+
+            def sample_set_iam_policy():
+                # Create a client
+                client = bigquery_connection_v1.ConnectionServiceClient()
+
+                # Initialize request argument(s)
+                request = bigquery_connection_v1.SetIamPolicyRequest(
+                    resource="resource_value",
+                )
+
+                # Make the request
+                response = client.set_iam_policy(request=request)
+
+                # Handle the response
+                print(response)
 
         Args:
             request (Union[google.iam.v1.iam_policy_pb2.SetIamPolicyRequest, dict]):
@@ -822,7 +1026,7 @@ class ConnectionServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([resource])
         if request is not None and has_flattened_params:
@@ -836,7 +1040,9 @@ class ConnectionServiceAsyncClient:
         if isinstance(request, dict):
             request = iam_policy_pb2.SetIamPolicyRequest(**request)
         elif not request:
-            request = iam_policy_pb2.SetIamPolicyRequest(resource=resource,)
+            request = iam_policy_pb2.SetIamPolicyRequest(
+                resource=resource,
+            )
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -853,7 +1059,12 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
@@ -876,6 +1087,27 @@ class ConnectionServiceAsyncClient:
         permission-aware UIs and command-line tools, not for
         authorization checking. This operation may "fail open" without
         warning.
+
+
+        .. code-block:: python
+
+            from google.cloud import bigquery_connection_v1
+
+            def sample_test_iam_permissions():
+                # Create a client
+                client = bigquery_connection_v1.ConnectionServiceClient()
+
+                # Initialize request argument(s)
+                request = bigquery_connection_v1.TestIamPermissionsRequest(
+                    resource="resource_value",
+                    permissions=['permissions_value_1', 'permissions_value_2'],
+                )
+
+                # Make the request
+                response = client.test_iam_permissions(request=request)
+
+                # Handle the response
+                print(response)
 
         Args:
             request (Union[google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest, dict]):
@@ -910,7 +1142,7 @@ class ConnectionServiceAsyncClient:
                 Response message for TestIamPermissions method.
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([resource, permissions])
         if request is not None and has_flattened_params:
@@ -925,7 +1157,8 @@ class ConnectionServiceAsyncClient:
             request = iam_policy_pb2.TestIamPermissionsRequest(**request)
         elif not request:
             request = iam_policy_pb2.TestIamPermissionsRequest(
-                resource=resource, permissions=permissions,
+                resource=resource,
+                permissions=permissions,
             )
 
         # Wrap the RPC method; this adds retry and timeout information,
@@ -943,7 +1176,12 @@ class ConnectionServiceAsyncClient:
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response

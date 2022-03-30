@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -108,7 +108,6 @@ class ConnectionServiceTransport(abc.ABC):
             credentials, _ = google.auth.load_credentials_from_file(
                 credentials_file, **scopes_kwargs, quota_project_id=quota_project_id
             )
-
         elif credentials is None:
             credentials, _ = google.auth.default(
                 **scopes_kwargs, quota_project_id=quota_project_id
@@ -129,7 +128,9 @@ class ConnectionServiceTransport(abc.ABC):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
             self.create_connection: gapic_v1.method.wrap_method(
-                self.create_connection, default_timeout=60.0, client_info=client_info,
+                self.create_connection,
+                default_timeout=60.0,
+                client_info=client_info,
             ),
             self.get_connection: gapic_v1.method.wrap_method(
                 self.get_connection,
@@ -162,7 +163,9 @@ class ConnectionServiceTransport(abc.ABC):
                 client_info=client_info,
             ),
             self.update_connection: gapic_v1.method.wrap_method(
-                self.update_connection, default_timeout=60.0, client_info=client_info,
+                self.update_connection,
+                default_timeout=60.0,
+                client_info=client_info,
             ),
             self.delete_connection: gapic_v1.method.wrap_method(
                 self.delete_connection,
@@ -180,10 +183,14 @@ class ConnectionServiceTransport(abc.ABC):
                 client_info=client_info,
             ),
             self.get_iam_policy: gapic_v1.method.wrap_method(
-                self.get_iam_policy, default_timeout=60.0, client_info=client_info,
+                self.get_iam_policy,
+                default_timeout=60.0,
+                client_info=client_info,
             ),
             self.set_iam_policy: gapic_v1.method.wrap_method(
-                self.set_iam_policy, default_timeout=60.0, client_info=client_info,
+                self.set_iam_policy,
+                default_timeout=60.0,
+                client_info=client_info,
             ),
             self.test_iam_permissions: gapic_v1.method.wrap_method(
                 self.test_iam_permissions,
@@ -195,9 +202,9 @@ class ConnectionServiceTransport(abc.ABC):
     def close(self):
         """Closes resources associated with the transport.
 
-       .. warning::
-            Only call this method if the transport is NOT shared
-            with other clients - this may cause errors in other clients!
+        .. warning::
+             Only call this method if the transport is NOT shared
+             with other clients - this may cause errors in other clients!
         """
         raise NotImplementedError()
 

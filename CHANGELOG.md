@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.4.0](https://github.com/googleapis/python-bigquery-connection/compare/v1.3.4...v1.4.0) (2022-03-08)
+
+
+### Features
+
+* Add Cloud_Resource Connection Support ([#181](https://github.com/googleapis/python-bigquery-connection/issues/181)) ([1be012a](https://github.com/googleapis/python-bigquery-connection/commit/1be012a7d7f585365cfd6c1e499188784838965a))
+
+### [1.3.4](https://github.com/googleapis/python-bigquery-connection/compare/v1.3.3...v1.3.4) (2022-03-05)
+
+
+### Bug Fixes
+
+* **deps:** require google-api-core>=1.31.5, >=2.3.2 ([#176](https://github.com/googleapis/python-bigquery-connection/issues/176)) ([a6cfa8f](https://github.com/googleapis/python-bigquery-connection/commit/a6cfa8f0c27ffa507305618d16a7ae5fb6fb15f9))
+* **deps:** require proto-plus>=1.15.0 ([a6cfa8f](https://github.com/googleapis/python-bigquery-connection/commit/a6cfa8f0c27ffa507305618d16a7ae5fb6fb15f9))
+
+### [1.3.3](https://github.com/googleapis/python-bigquery-connection/compare/v1.3.2...v1.3.3) (2022-02-26)
+
+
+### Bug Fixes
+
+* resolve DuplicateCredentialArgs error when using credentials_file ([d1e6767](https://github.com/googleapis/python-bigquery-connection/commit/d1e676705826962072919c51d881f22d540377b5))
+
+
+### Documentation
+
+* add generated snippets ([#165](https://github.com/googleapis/python-bigquery-connection/issues/165)) ([53edc14](https://github.com/googleapis/python-bigquery-connection/commit/53edc14b8f976985549856ac0823565b88a1a4ee))
+
+### [1.3.2](https://www.github.com/googleapis/python-bigquery-connection/compare/v1.3.1...v1.3.2) (2022-01-08)
+
+
+### Documentation
+
+* add python quickstart sample ([#141](https://www.github.com/googleapis/python-bigquery-connection/issues/141)) ([8b85fb6](https://www.github.com/googleapis/python-bigquery-connection/commit/8b85fb6784ba9bf51123e9185f276391326dd54a))
+
 ### [1.3.1](https://www.github.com/googleapis/python-bigquery-connection/compare/v1.3.0...v1.3.1) (2021-11-02)
 
 

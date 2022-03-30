@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ from .services.connection_service import ConnectionServiceAsyncClient
 from .types.connection import AwsAccessRole
 from .types.connection import AwsCrossAccountRole
 from .types.connection import AwsProperties
+from .types.connection import CloudResourceProperties
 from .types.connection import CloudSpannerProperties
 from .types.connection import CloudSqlCredential
 from .types.connection import CloudSqlProperties
@@ -36,6 +37,7 @@ __all__ = (
     "AwsAccessRole",
     "AwsCrossAccountRole",
     "AwsProperties",
+    "CloudResourceProperties",
     "CloudSpannerProperties",
     "CloudSqlCredential",
     "CloudSqlProperties",

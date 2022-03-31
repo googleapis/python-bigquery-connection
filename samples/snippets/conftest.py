@@ -55,4 +55,4 @@ def username() -> str:
 
 @pytest.fixture(scope="session")
 def password() -> str:
-    return os.environ["MYSQL_PWD"]
+    return os.environ["MYSQL_PASSWORD"]

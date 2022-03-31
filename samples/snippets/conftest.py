@@ -34,30 +34,25 @@ def location() -> str:
 
 
 @pytest.fixture(scope="session")
-def connection_id() -> str:
-    return os.environ["CONNECTION_ID"]
-
-
-@pytest.fixture(scope="session")
 def database() -> str:
-    return os.environ["MY_SQL_DATABASE"]
+    return os.environ["MYSQL_DATABASE"]
 
 
 @pytest.fixture(scope="session")
 def instance() -> str:
-    return os.environ["MY_SQL_INSTANCE"]
+    return os.environ["MYSQL_INSTANCE"]
 
 
 @pytest.fixture(scope="session")
 def instance_location() -> str:
-    return os.environ["MY_SQL_INSTANCE_LOCATION"]
+    return os.environ["MYSQL_INSTANCE_LOCATION"]
 
 
 @pytest.fixture(scope="session")
 def username() -> str:
-    return os.environ["DB_USER"]
+    return os.environ["MYSQL_USER"]
 
 
 @pytest.fixture(scope="session")
 def password() -> str:
-    return os.environ["DB_PWD"]
+    return os.environ["MYSQL_PWD"]

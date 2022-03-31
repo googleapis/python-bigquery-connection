@@ -22,7 +22,6 @@ from google.cloud.bigquery_connection_v1 import types as connection_types
 def main(
     project_id: str,
     location: str,
-    connection_id: str,
     database: str,
     instance: str,
     instance_location: str,
@@ -31,7 +30,6 @@ def main(
 ) -> None:
     original_project_id = project_id
     original_location = location
-    original_connection_id = connection_id
     original_database = database
     original_instance = instance
     original_instance_location = instance_location
@@ -44,8 +42,6 @@ def main(
     # See: https://cloud.google.com/bigquery/docs/locations for a list of
     # available locations.
     location = "US"
-    # TODO(developer): Set connection_id to the connection ID.
-    connection_id = "your-connection-id"
     # TODO(developer): Set database to the name of the database in which you're creating the connection.
     database = "my-database"
     # TODO(developer): Set instance to the instance where you're creating the connection.
@@ -60,7 +56,6 @@ def main(
 
     project_id = original_project_id
     location = original_location
-    connection_id = original_connection_id
     database = original_database
     instance = original_instance
     instance_location = original_instance_location
@@ -81,20 +76,19 @@ def main(
             "credential": cloud_sql_credential,
         }
     )
-    create_mysql_connection(project_id, location, connection_id, cloud_sql_properties)
+    create_mysql_connection(project_id, location, cloud_sql_properties)
 
 
 def create_mysql_connection(
     project_id: str,
     location: str,
-    connection_id: str,
     cloud_sql_properties: bq_connection.CloudSqlProperties,
 ) -> None:
     connection = connection_types.Connection({"cloud_sql": cloud_sql_properties})
     client = bq_connection.ConnectionServiceClient()
     parent = client.common_location_path(project_id, location)
     request = bq_connection.CreateConnectionRequest(
-        {"parent": parent, "connection": connection, "connection_id": connection_id}
+        {"parent": parent, "connection": connection}
     )
     response = client.create_connection(request)
     print(f"Created connection successfully: {response.name}")

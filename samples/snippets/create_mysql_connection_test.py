@@ -61,7 +61,6 @@ def test_create_mysql_connection(
     capsys: pytest.CaptureFixture,
     project_id: str,
     location: str,
-    connection_id: str,
     database: str,
     instance: str,
     instance_location: str,
@@ -71,7 +70,6 @@ def test_create_mysql_connection(
     create_mysql_connection.main(
         project_id,
         location,
-        connection_id,
         database,
         instance,
         instance_location,

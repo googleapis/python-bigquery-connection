@@ -17,7 +17,7 @@ from google.cloud.bigquery_connection_v1.services import connection_service
 import pytest
 import test_utils.prefixer
 
-from . import connection_create
+from . import create_mysql_connection
 
 connection_prefixer = test_utils.prefixer.Prefixer("py-bq-r", "snippets", separator="-")
 
@@ -57,7 +57,7 @@ def connection_id(
         pass
 
 
-def test_connection_create(
+def test_create_mysql_connection(
     capsys: pytest.CaptureFixture,
     project_id: str,
     location: str,
@@ -68,7 +68,7 @@ def test_connection_create(
     username: str,
     password: str,
 ) -> None:
-    connection_create.main(
+    create_mysql_connection.main(
         project_id,
         location,
         connection_id,

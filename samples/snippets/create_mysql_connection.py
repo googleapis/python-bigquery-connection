@@ -16,7 +16,7 @@
 from google.cloud import bigquery_connection_v1 as bq_connection
 from google.cloud.bigquery_connection_v1 import types as connection_types
 
-"""This sample shows how to create a BigQuery connection with a Cloud MySql database"""
+"""This sample shows how to create a BigQuery connection with a Cloud SQL for MySQL database"""
 
 
 def main(
@@ -28,8 +28,7 @@ def main(
     instance_location: str,
     username: str,
     password: str,
-) -> connection_types.Connection:
-    # [START_EXCLUDE]
+) -> None:
     original_project_id = project_id
     original_location = location
     original_connection_id = connection_id
@@ -38,7 +37,6 @@ def main(
     original_instance_location = instance_location
     original_username = username
     original_password = password
-    # [END_EXCLUDE]
     # TODO(developer): Set project_id to the project ID containing the
     # connection.
     project_id = "your-project-id"
@@ -60,7 +58,6 @@ def main(
     password = "my-password"
     instance_id = f"{project_id}:{instance_location}:{instance}"
 
-    # [START_EXCLUDE]
     project_id = original_project_id
     location = original_location
     connection_id = original_connection_id
@@ -70,33 +67,35 @@ def main(
     username = original_username
     password = original_password
     instance_id = f"{project_id}:{instance_location}:{instance}"
-    # [END_EXCLUDE]
-    cloud_sql_credential = bq_connection.CloudSqlCredential()
-    cloud_sql_credential.username = username
-    cloud_sql_credential.password = password
-    cloud_sql_properties = bq_connection.CloudSqlProperties()
-    cloud_sql_properties.type_ = bq_connection.CloudSqlProperties.DatabaseType.MYSQL
-    cloud_sql_properties.database = database
-    cloud_sql_properties.instance_id = instance_id
-    cloud_sql_properties.credential = cloud_sql_credential
-    connection = connection_types.Connection()
-    connection.cloud_sql = cloud_sql_properties
-    create_connection(project_id, location, connection_id, connection)
-    return connection
+    cloud_sql_credential = bq_connection.CloudSqlCredential(
+        {
+            "username": username,
+            "password": password,
+        }
+    )
+    cloud_sql_properties = bq_connection.CloudSqlProperties(
+        {
+            "type_": bq_connection.CloudSqlProperties.DatabaseType.MYSQL,
+            "database": database,
+            "instance_id": instance_id,
+            "credential": cloud_sql_credential,
+        }
+    )
+    create_mysql_connection(project_id, location, connection_id, cloud_sql_properties)
 
 
-def create_connection(
+def create_mysql_connection(
     project_id: str,
     location: str,
     connection_id: str,
-    connection: bq_connection.Connection,
+    cloud_sql_properties: bq_connection.CloudSqlProperties,
 ) -> None:
+    connection = connection_types.Connection({"cloud_sql": cloud_sql_properties})
     client = bq_connection.ConnectionServiceClient()
     parent = client.common_location_path(project_id, location)
-    request = bq_connection.CreateConnectionRequest()
-    request.parent = parent
-    request.connection = connection
-    request.connection_id = connection_id
+    request = bq_connection.CreateConnectionRequest(
+        {"parent": parent, "connection": connection, "connection_id": connection_id}
+    )
     response = client.create_connection(request)
     print(f"Created connection successfully: {response.name}")
 

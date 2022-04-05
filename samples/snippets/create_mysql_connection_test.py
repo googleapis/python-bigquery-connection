@@ -61,9 +61,7 @@ def connection_id(
         pass
 
 
-def test_create_mysql_connection(
-    capsys: pytest.CaptureFixture
-) -> None:
+def test_create_mysql_connection(capsys: pytest.CaptureFixture) -> None:
     test_project_id = project_id()
     test_location = location()
     test_database = database()
@@ -71,7 +69,9 @@ def test_create_mysql_connection(
     test_instance_location = instance_location()
     test_username = username()
     test_password = mysql_password()
-    test_cloud_sql_conn_name = f"{test_project_id}:{test_instance_location}:{test_instance_name}"
+    test_cloud_sql_conn_name = (
+        f"{test_project_id}:{test_instance_location}:{test_instance_name}"
+    )
 
     test_cloud_sql_credential = _ConnectionBase.CloudSqlCredential(
         {
@@ -87,6 +87,10 @@ def test_create_mysql_connection(
             "credential": test_cloud_sql_credential,
         }
     )
-    create_mysql_connection.create_mysql_connection(project_id=test_project_id, location=test_location, cloud_sql_properties=test_cloud_sql_properties)
+    create_mysql_connection.create_mysql_connection(
+        project_id=test_project_id,
+        location=test_location,
+        cloud_sql_properties=test_cloud_sql_properties,
+    )
     out, _ = capsys.readouterr()
     assert "Created connection successfully:" in out

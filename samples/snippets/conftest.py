@@ -39,8 +39,8 @@ def database() -> str:
 
 
 @pytest.fixture(scope="session")
-def instance() -> str:
-    return os.environ["MYSQL_INSTANCE"]
+def instance_name() -> str:
+    return os.environ["MYSQL_INSTANCE_ID"]
 
 
 @pytest.fixture(scope="session")
@@ -54,5 +54,5 @@ def username() -> str:
 
 
 @pytest.fixture(scope="session")
-def password() -> str:
+def mysql_password() -> str:
     return os.environ["MYSQL_PASSWORD"]

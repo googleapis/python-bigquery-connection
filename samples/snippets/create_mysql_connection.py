@@ -14,27 +14,13 @@
 
 # [START bigqueryconnection_connection_create]
 from google.cloud import bigquery_connection_v1 as bq_connection
-from google.cloud.bigquery_connection_v1 import types as connection_types
+
+from samples.snippets.conftest import instance_name
 
 """This sample shows how to create a BigQuery connection with a Cloud SQL for MySQL database"""
 
 
-def main(
-    project_id: str,
-    location: str,
-    database: str,
-    instance: str,
-    instance_location: str,
-    username: str,
-    password: str,
-) -> None:
-    original_project_id = project_id
-    original_location = location
-    original_database = database
-    original_instance = instance
-    original_instance_location = instance_location
-    original_username = username
-    original_password = password
+def main() -> None:
     # TODO(developer): Set project_id to the project ID containing the
     # connection.
     project_id = "your-project-id"
@@ -45,23 +31,15 @@ def main(
     # TODO(developer): Set database to the name of the database in which you're creating the connection.
     database = "my-database"
     # TODO(developer): Set instance to the instance where you're creating the connection.
-    instance = "my-instance"
+    instance_name = "my-instance"
     # TODO(developer): Set instance_location to the location of the instance where you are creating the connection.
     instance_location = "my-instance-location"
     # TODO(developer): Set username to the database username.
     username = "my-username"
     # TODO(developer): Set password to the database password.
     password = "my-password"
-    instance_id = f"{project_id}:{instance_location}:{instance}"
+    cloud_sql_conn_name = f"{project_id}:{instance_location}:{instance_name}"
 
-    project_id = original_project_id
-    location = original_location
-    database = original_database
-    instance = original_instance
-    instance_location = original_instance_location
-    username = original_username
-    password = original_password
-    instance_id = f"{project_id}:{instance_location}:{instance}"
     cloud_sql_credential = bq_connection.CloudSqlCredential(
         {
             "username": username,
@@ -72,7 +50,7 @@ def main(
         {
             "type_": bq_connection.CloudSqlProperties.DatabaseType.MYSQL,
             "database": database,
-            "instance_id": instance_id,
+            "instance_id": cloud_sql_conn_name,
             "credential": cloud_sql_credential,
         }
     )

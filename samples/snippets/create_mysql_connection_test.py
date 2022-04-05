@@ -12,10 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from multiprocessing.connection import _ConnectionBase
 import google.api_core.exceptions
 from google.cloud.bigquery_connection_v1.services import connection_service
+from google.cloud import bigquery_connection_v1 as bq_connection
 import pytest
 import test_utils.prefixer
+
+from samples.snippets.conftest import database, instance_location, instance_name, location, mysql_password, username
+from tests.system import project_id
 
 from . import create_mysql_connection
 
@@ -58,23 +63,31 @@ def connection_id(
 
 
 def test_create_mysql_connection(
-    capsys: pytest.CaptureFixture,
-    project_id: str,
-    location: str,
-    database: str,
-    instance: str,
-    instance_location: str,
-    username: str,
-    password: str,
+    capsys: pytest.CaptureFixture
 ) -> None:
-    create_mysql_connection.main(
-        project_id,
-        location,
-        database,
-        instance,
-        instance_location,
-        username,
-        password,
+    test_project_id = project_id()
+    test_location = location()
+    test_database = database()
+    test_instance_name = instance_name()
+    test_instance_location = instance_location()
+    test_username = username()
+    test_password = mysql_password()
+    test_cloud_sql_conn_name = f"{test_project_id}:{test_instance_location}:{test_instance_name}"
+
+    test_cloud_sql_credential = _ConnectionBase.CloudSqlCredential(
+        {
+            "username": test_username,
+            "password": test_password,
+        }
     )
+    test_cloud_sql_properties = bq_connection.CloudSqlProperties(
+        {
+            "type_": bq_connection.CloudSqlProperties.DatabaseType.MYSQL,
+            "database": test_database,
+            "instance_id": test_cloud_sql_conn_name,
+            "credential": test_cloud_sql_credential,
+        }
+    )
+    create_mysql_connection.create_mysql_connection(project_id=test_project_id, location=test_location, cloud_sql_properties=test_cloud_sql_properties)
     out, _ = capsys.readouterr()
     assert "Created connection successfully:" in out

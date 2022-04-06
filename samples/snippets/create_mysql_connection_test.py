@@ -19,12 +19,12 @@ from google.cloud import bigquery_connection_v1 as bq_connection
 from google.cloud.bigquery_connection_v1.services import connection_service
 import pytest
 from samples.snippets.conftest import (
-    cloud_sql_conn_name, 
-    database, 
-    location, 
-    mysql_password, 
-    project_id, 
-    username
+    cloud_sql_conn_name,
+    database,
+    location,
+    mysql_password,
+    project_id,
+    username,
 )
 import test_utils.prefixer
 

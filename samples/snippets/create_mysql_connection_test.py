@@ -39,6 +39,7 @@ test_username = username()
 test_password = mysql_password()
 test_cloud_sql_conn_name = cloud_sql_conn_name()
 
+
 @pytest.fixture(scope="session")
 def location_path(
     connection_client: connection_service.ConnectionServiceClient(),
@@ -67,7 +68,9 @@ def connection_id(
     id_ = connection_prefixer.create_prefix()
     yield id_
 
-    connection_name = connection_client.connection_path(test_project_id, test_location, id_)
+    connection_name = connection_client.connection_path(
+        test_project_id, test_location, id_
+    )
     try:
         connection_client.delete_connection(name=connection_name)
     except google.api_core.exceptions.NotFound:

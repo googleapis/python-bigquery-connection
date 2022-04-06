@@ -24,7 +24,7 @@ from samples.snippets.conftest import (
     mysql_password,
     project_id,
     username,
-    cloud_sql_conn_name
+    cloud_sql_conn_name,
 )
 import test_utils.prefixer
 

@@ -20,14 +20,14 @@ from google.cloud import bigquery_connection_v1 as bq_connection
 
 def main() -> None:
     # TODO(developer): Set all variables for your Cloud SQL for MySQL connection.
-    project_id = "your-project-id" # set project_id
-    location = "US" # set location
+    project_id = "your-project-id"  # set project_id
+    location = "US"  # set location
     # See: https://cloud.google.com/bigquery/docs/locations for a list of
     # available locations.
-    database = "my-database" # set database name
-    username = "my-username" # set database username
-    password = "my-password" # set database password
-    cloud_sql_conn_name = "" # set the name of your connection
+    database = "my-database"  # set database name
+    username = "my-username"  # set database username
+    password = "my-password"  # set database password
+    cloud_sql_conn_name = ""  # set the name of your connection
 
     cloud_sql_credential = bq_connection.CloudSqlCredential(
         {

@@ -32,12 +32,12 @@ from . import create_mysql_connection
 
 connection_prefixer = test_utils.prefixer.Prefixer("py-bq-r", "snippets", separator="-")
 
-test_project_id = project_id()
-test_location = location()
-test_database = database()
-test_username = username()
-test_password = mysql_password()
-test_cloud_sql_conn_name = cloud_sql_conn_name()
+test_project_id = project_id
+test_location = location
+test_database = database
+test_username = username
+test_password = mysql_password
+test_cloud_sql_conn_name = cloud_sql_conn_name
 
 
 @pytest.fixture(scope="session")

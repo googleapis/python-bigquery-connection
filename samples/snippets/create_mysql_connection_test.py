@@ -20,12 +20,11 @@ from google.cloud.bigquery_connection_v1.services import connection_service
 import pytest
 from samples.snippets.conftest import (
     database,
-    instance_location,
-    instance_name,
     location,
     mysql_password,
     project_id,
     username,
+    cloud_sql_conn_name
 )
 import test_utils.prefixer
 
@@ -36,10 +35,9 @@ connection_prefixer = test_utils.prefixer.Prefixer("py-bq-r", "snippets", separa
 test_project_id = project_id()
 test_location = location()
 test_database = database()
-test_instance_name = instance_name()
-test_instance_location = instance_location()
 test_username = username()
 test_password = mysql_password()
+test_cloud_sql_conn_name = cloud_sql_conn_name()
 
 @pytest.fixture(scope="session")
 def location_path(
@@ -77,10 +75,6 @@ def connection_id(
 
 
 def test_create_mysql_connection(capsys: pytest.CaptureFixture) -> None:
-    test_cloud_sql_conn_name = (
-        f"{test_project_id}:{test_instance_location}:{test_instance_name}"
-    )
-
     test_cloud_sql_credential = _ConnectionBase.CloudSqlCredential(
         {
             "username": test_username,

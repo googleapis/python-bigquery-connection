@@ -25,14 +25,21 @@ from . import create_mysql_connection
 
 connection_prefixer = test_utils.prefixer.Prefixer("py-bq-r", "snippets", separator="-")
 
+test_project_id = project_id()
+test_location = location()
+test_database = database()
+test_instance_name = instance_name()
+test_instance_location = instance_location()
+test_username = username()
+test_password = mysql_password()
 
 @pytest.fixture(scope="session")
 def location_path(
     connection_client: connection_service.ConnectionServiceClient(),
-    project_id: str,
-    location: str,
+    test_project_id: str,
+    test_location: str,
 ) -> str:
-    return connection_client.common_location_path(project_id, location)
+    return connection_client.common_location_path(test_project_id, test_location)
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -48,13 +55,13 @@ def cleanup_connection(
 @pytest.fixture(scope="session")
 def connection_id(
     connection_client: connection_service.ConnectionServiceClient,
-    project_id: str,
-    location: str,
+    test_project_id: str,
+    test_location: str,
 ) -> str:
     id_ = connection_prefixer.create_prefix()
     yield id_
 
-    connection_name = connection_client.connection_path(project_id, location, id_)
+    connection_name = connection_client.connection_path(test_project_id, test_location, id_)
     try:
         connection_client.delete_connection(name=connection_name)
     except google.api_core.exceptions.NotFound:
@@ -62,13 +69,6 @@ def connection_id(
 
 
 def test_create_mysql_connection(capsys: pytest.CaptureFixture) -> None:
-    test_project_id = project_id()
-    test_location = location()
-    test_database = database()
-    test_instance_name = instance_name()
-    test_instance_location = instance_location()
-    test_username = username()
-    test_password = mysql_password()
     test_cloud_sql_conn_name = (
         f"{test_project_id}:{test_instance_location}:{test_instance_name}"
     )

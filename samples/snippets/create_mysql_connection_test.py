@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from multiprocessing.connection import _ConnectionBase
-
 import google.api_core.exceptions
 from google.cloud import bigquery_connection_v1 as bq_connection
 from google.cloud.bigquery_connection_v1.services import connection_service
@@ -78,7 +76,7 @@ def connection_id(
 
 
 def test_create_mysql_connection(capsys: pytest.CaptureFixture) -> None:
-    test_cloud_sql_credential = _ConnectionBase.CloudSqlCredential(
+    test_cloud_sql_credential = bq_connection.CloudSqlProperties(
         {
             "username": test_username,
             "password": test_password,

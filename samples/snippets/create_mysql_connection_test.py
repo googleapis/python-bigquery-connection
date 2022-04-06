@@ -13,13 +13,13 @@
 # limitations under the License.
 
 from multiprocessing.connection import _ConnectionBase
-import google.api_core.exceptions
-from google.cloud.bigquery_connection_v1.services import connection_service
-from google.cloud import bigquery_connection_v1 as bq_connection
-import pytest
-import test_utils.prefixer
 
-from samples.snippets.conftest import project_id, database, instance_location, instance_name, location, mysql_password, username
+import google.api_core.exceptions
+from google.cloud import bigquery_connection_v1 as bq_connection
+from google.cloud.bigquery_connection_v1.services import connection_service
+import pytest
+from samples.snippets.conftest import database, instance_location, instance_name, location, mysql_password, project_id, username
+import test_utils.prefixer
 
 from . import create_mysql_connection
 

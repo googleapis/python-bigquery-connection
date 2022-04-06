@@ -15,8 +15,6 @@
 # [START bigqueryconnection_connection_create]
 from google.cloud import bigquery_connection_v1 as bq_connection
 
-from samples.snippets.conftest import instance_name
-
 """This sample shows how to create a BigQuery connection with a Cloud SQL for MySQL database"""
 
 
@@ -62,7 +60,7 @@ def create_mysql_connection(
     location: str,
     cloud_sql_properties: bq_connection.CloudSqlProperties,
 ) -> None:
-    connection = connection_types.Connection({"cloud_sql": cloud_sql_properties})
+    connection = bq_connection.types.Connection({"cloud_sql": cloud_sql_properties})
     client = bq_connection.ConnectionServiceClient()
     parent = client.common_location_path(project_id, location)
     request = bq_connection.CreateConnectionRequest(

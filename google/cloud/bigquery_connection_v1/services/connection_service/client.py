@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -766,7 +766,6 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         reasons, also resets credential if connection properties
         are in the update field mask.
 
-
         .. code-block:: python
 
             from google.cloud import bigquery_connection_v1
@@ -966,7 +965,6 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         Returns an empty policy if the resource exists and does
         not have a policy set.
 
-
         .. code-block:: python
 
             from google.cloud import bigquery_connection_v1
@@ -1125,7 +1123,6 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
 
         Can return ``NOT_FOUND``, ``INVALID_ARGUMENT``, and
         ``PERMISSION_DENIED`` errors.
-
 
         .. code-block:: python
 
@@ -1289,7 +1286,6 @@ class ConnectionServiceClient(metaclass=ConnectionServiceClientMeta):
         permission-aware UIs and command-line tools, not for
         authorization checking. This operation may "fail open" without
         warning.
-
 
         .. code-block:: python
 

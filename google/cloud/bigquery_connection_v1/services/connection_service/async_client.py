@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -400,8 +400,7 @@ class ConnectionServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -510,8 +509,7 @@ class ConnectionServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -559,7 +557,6 @@ class ConnectionServiceAsyncClient:
         r"""Updates the specified connection. For security
         reasons, also resets credential if connection properties
         are in the update field mask.
-
 
         .. code-block:: python
 
@@ -734,8 +731,7 @@ class ConnectionServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=60.0,
             ),
@@ -769,7 +765,6 @@ class ConnectionServiceAsyncClient:
         r"""Gets the access control policy for a resource.
         Returns an empty policy if the resource exists and does
         not have a policy set.
-
 
         .. code-block:: python
 
@@ -932,7 +927,6 @@ class ConnectionServiceAsyncClient:
 
         Can return ``NOT_FOUND``, ``INVALID_ARGUMENT``, and
         ``PERMISSION_DENIED`` errors.
-
 
         .. code-block:: python
 
@@ -1099,7 +1093,6 @@ class ConnectionServiceAsyncClient:
         permission-aware UIs and command-line tools, not for
         authorization checking. This operation may "fail open" without
         warning.
-
 
         .. code-block:: python
 

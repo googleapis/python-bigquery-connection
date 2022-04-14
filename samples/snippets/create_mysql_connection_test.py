@@ -16,26 +16,11 @@ import google.api_core.exceptions
 from google.cloud import bigquery_connection_v1 as bq_connection
 from google.cloud.bigquery_connection_v1.services import connection_service
 import pytest
-from samples.snippets.conftest import (
-    cloud_sql_conn_name,
-    database,
-    location,
-    mysql_password,
-    project_id,
-    username,
-)
 import test_utils.prefixer
 
 from . import create_mysql_connection
 
 connection_prefixer = test_utils.prefixer.Prefixer("py-bq-r", "snippets", separator="-")
-
-test_project_id = project_id
-test_location = location
-test_database = database
-test_username = username
-test_password = mysql_password
-test_cloud_sql_conn_name = cloud_sql_conn_name
 
 
 @pytest.fixture(scope="session")
@@ -60,40 +45,46 @@ def cleanup_connection(
 @pytest.fixture(scope="session")
 def connection_id(
     connection_client: connection_service.ConnectionServiceClient,
-    test_project_id: str,
-    test_location: str,
+    project_id: str,
+    location: str,
 ) -> str:
     id_ = connection_prefixer.create_prefix()
     yield id_
 
-    connection_name = connection_client.connection_path(
-        test_project_id, test_location, id_
-    )
+    connection_name = connection_client.connection_path(project_id, location, id_)
     try:
         connection_client.delete_connection(name=connection_name)
     except google.api_core.exceptions.NotFound:
         pass
 
 
-def test_create_mysql_connection(capsys: pytest.CaptureFixture) -> None:
-    test_cloud_sql_credential = bq_connection.CloudSqlCredential(
+def test_create_mysql_connection(
+    capsys: pytest.CaptureFixture,
+    username: str,
+    password: str,
+    database: str,
+    cloud_sql_conn_name: str,
+    project_id: str,
+    location: str,
+) -> None:
+    cloud_sql_credential = bq_connection.CloudSqlCredential(
         {
-            "username": test_username,
-            "password": test_password,
+            "username": username,
+            "password": password,
         }
     )
-    test_cloud_sql_properties = bq_connection.CloudSqlProperties(
+    cloud_sql_properties = bq_connection.CloudSqlProperties(
         {
             "type_": bq_connection.CloudSqlProperties.DatabaseType.MYSQL,
-            "database": test_database,
-            "instance_id": test_cloud_sql_conn_name,
-            "credential": test_cloud_sql_credential,
+            "database": database,
+            "instance_id": cloud_sql_conn_name,
+            "credential": cloud_sql_credential,
         }
     )
     create_mysql_connection.create_mysql_connection(
-        project_id=test_project_id,
-        location=test_location,
-        cloud_sql_properties=test_cloud_sql_properties,
+        project_id=project_id,
+        location=location,
+        cloud_sql_properties=cloud_sql_properties,
     )
     out, _ = capsys.readouterr()
     assert "Created connection successfully:" in out

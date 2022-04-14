@@ -60,8 +60,8 @@ def connection_id(
 
 def test_create_mysql_connection(
     capsys: pytest.CaptureFixture,
-    username: str,
-    password: str,
+    mysql_username: str,
+    mysql_password: str,
     database: str,
     cloud_sql_conn_name: str,
     project_id: str,
@@ -69,8 +69,8 @@ def test_create_mysql_connection(
 ) -> None:
     cloud_sql_credential = bq_connection.CloudSqlCredential(
         {
-            "username": username,
-            "password": password,
+            "username": mysql_username,
+            "password": mysql_password,
         }
     )
     cloud_sql_properties = bq_connection.CloudSqlProperties(

@@ -44,7 +44,7 @@ def cloud_sql_conn_name() -> str:
 
 
 @pytest.fixture(scope="session")
-def username() -> str:
+def mysql_username() -> str:
     return os.environ["MYSQL_USER"]
 
 

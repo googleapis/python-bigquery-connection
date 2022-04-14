@@ -26,10 +26,10 @@ connection_prefixer = test_utils.prefixer.Prefixer("py-bq-r", "snippets", separa
 @pytest.fixture(scope="session")
 def location_path(
     connection_client: connection_service.ConnectionServiceClient(),
-    test_project_id: str,
-    test_location: str,
+    project_id: str,
+    location: str,
 ) -> str:
-    return connection_client.common_location_path(test_project_id, test_location)
+    return connection_client.common_location_path(project_id, location)
 
 
 @pytest.fixture(scope="module", autouse=True)

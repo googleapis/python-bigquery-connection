@@ -30,7 +30,10 @@ from google.protobuf import field_mask_pb2  # type: ignore
 from google.type import expr_pb2  # type: ignore
 import grpc
 from grpc.experimental import aio
-import mock
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 from proto.marshal.rules.dates import DurationRule, TimestampRule
 import pytest
 

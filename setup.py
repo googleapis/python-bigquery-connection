@@ -44,6 +44,7 @@ setuptools.setup(
         "proto-plus >= 1.4.0",
         "grpc-google-iam-v1",
         "libcst >= 0.2.5",
+        "protobuf<4.0.0dev",
     ),
     python_requires=">=3.6",
     scripts=["scripts/fixup_keywords.py"],

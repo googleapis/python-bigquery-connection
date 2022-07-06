@@ -3205,7 +3205,6 @@ def test_connection_service_transport_auth_adc(transport_class):
     [
         transports.ConnectionServiceGrpcTransport,
         transports.ConnectionServiceGrpcAsyncIOTransport,
-        transports.ConnectionServiceRestTransport,
     ],
 )
 def test_connection_service_transport_auth_gdch_credentials(transport_class):

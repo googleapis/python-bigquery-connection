@@ -1,9 +1,9 @@
-Python Client for Google BigQuery Connection API
-================================================
+Python Client for BigQuery Connection API
+=========================================
 
 |stable| |pypi| |versions|
 
-`Google BigQuery Connection API`_: 
+`BigQuery Connection API`_: Manage BigQuery connections to external data sources.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
@@ -14,7 +14,7 @@ Python Client for Google BigQuery Connection API
    :target: https://pypi.org/project/google-cloud-bigquery-connection/
 .. |versions| image:: https://img.shields.io/pypi/pyversions/google-cloud-bigquery-connection.svg
    :target: https://pypi.org/project/google-cloud-bigquery-connection/
-.. _Google BigQuery Connection API: https://cloud.google.com/bigquery/docs/reference/bigqueryconnection
+.. _BigQuery Connection API: https://cloud.google.com/bigquery/docs/reference/bigqueryconnection
 .. _Client Library Documentation: https://cloud.google.com/python/docs/reference/bigqueryconnection/latest
 .. _Product Documentation:  https://cloud.google.com/bigquery/docs/reference/bigqueryconnection
 
@@ -25,12 +25,12 @@ In order to use this library, you first need to go through the following steps:
 
 1. `Select or create a Cloud Platform project.`_
 2. `Enable billing for your project.`_
-3. `Enable the Google BigQuery Connection API.`_
+3. `Enable the BigQuery Connection API.`_
 4. `Setup Authentication.`_
 
 .. _Select or create a Cloud Platform project.: https://console.cloud.google.com/project
 .. _Enable billing for your project.: https://cloud.google.com/billing/docs/how-to/modify-project#enable_billing_for_a_project
-.. _Enable the Google BigQuery Connection API.:  https://cloud.google.com/bigquery/docs/reference/bigqueryconnection
+.. _Enable the BigQuery Connection API.:  https://cloud.google.com/bigquery/docs/reference/bigqueryconnection
 .. _Setup Authentication.: https://googleapis.dev/python/google-api-core/latest/auth.html
 
 Installation
@@ -92,12 +92,12 @@ Windows
 Next Steps
 ~~~~~~~~~~
 
--  Read the `Client Library Documentation`_ for Google BigQuery Connection API
+-  Read the `Client Library Documentation`_ for BigQuery Connection API
    to see other available methods on the client.
--  Read the `Google BigQuery Connection API Product documentation`_ to learn
+-  Read the `BigQuery Connection API Product documentation`_ to learn
    more about the product and see How-to Guides.
 -  View this `README`_ to see the full list of Cloud
    APIs that we cover.
 
-.. _Google BigQuery Connection API Product documentation:  https://cloud.google.com/bigquery/docs/reference/bigqueryconnection
+.. _BigQuery Connection API Product documentation:  https://cloud.google.com/bigquery/docs/reference/bigqueryconnection
 .. _README: https://github.com/googleapis/google-cloud-python/blob/main/README.rst

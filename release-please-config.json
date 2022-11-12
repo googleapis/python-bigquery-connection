@@ -4,7 +4,12 @@
     ".": {
       "release-type": "python",
       "extra-files": [
-        "google/cloud/bigquery_connection/gapic_version.py"
+        "google/cloud/bigquery_connection/gapic_version.py",
+        {
+          "type": "json",
+          "path": "samples/generated_samples/snippet_metadata_google.cloud.bigquery.connection.v1.json",
+          "jsonpath": "$.clientLibrary.version"
+        }
       ]
     }
   },

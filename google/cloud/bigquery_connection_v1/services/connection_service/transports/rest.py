@@ -14,24 +14,21 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -39,14 +36,15 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.bigquery_connection_v1.types import connection
-from google.cloud.bigquery_connection_v1.types import connection as gcbc_connection
 from google.iam.v1 import iam_policy_pb2  # type: ignore
 from google.iam.v1 import policy_pb2  # type: ignore
 from google.protobuf import empty_pb2  # type: ignore
 
-from .base import ConnectionServiceTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.bigquery_connection_v1.types import connection as gcbc_connection
+from google.cloud.bigquery_connection_v1.types import connection
 
+from .base import ConnectionServiceTransport
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -135,7 +133,12 @@ class ConnectionServiceRestInterceptor:
 
 
     """
-    def pre_create_connection(self, request: gcbc_connection.CreateConnectionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[gcbc_connection.CreateConnectionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_connection(
+        self,
+        request: gcbc_connection.CreateConnectionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[gcbc_connection.CreateConnectionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_connection
 
         Override in a subclass to manipulate the request or metadata
@@ -143,7 +146,9 @@ class ConnectionServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_connection(self, response: gcbc_connection.Connection) -> gcbc_connection.Connection:
+    def post_create_connection(
+        self, response: gcbc_connection.Connection
+    ) -> gcbc_connection.Connection:
         """Post-rpc interceptor for create_connection
 
         Override in a subclass to manipulate the response
@@ -151,7 +156,12 @@ class ConnectionServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_connection(self, request: connection.DeleteConnectionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[connection.DeleteConnectionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_connection(
+        self,
+        request: connection.DeleteConnectionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[connection.DeleteConnectionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_connection
 
         Override in a subclass to manipulate the request or metadata
@@ -159,7 +169,11 @@ class ConnectionServiceRestInterceptor:
         """
         return request, metadata
 
-    def pre_get_connection(self, request: connection.GetConnectionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[connection.GetConnectionRequest, Sequence[Tuple[str, str]]]:
+    def pre_get_connection(
+        self,
+        request: connection.GetConnectionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[connection.GetConnectionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_connection
 
         Override in a subclass to manipulate the request or metadata
@@ -167,7 +181,9 @@ class ConnectionServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_connection(self, response: connection.Connection) -> connection.Connection:
+    def post_get_connection(
+        self, response: connection.Connection
+    ) -> connection.Connection:
         """Post-rpc interceptor for get_connection
 
         Override in a subclass to manipulate the response
@@ -175,7 +191,12 @@ class ConnectionServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_iam_policy(self, request: iam_policy_pb2.GetIamPolicyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[iam_policy_pb2.GetIamPolicyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_iam_policy(
+        self,
+        request: iam_policy_pb2.GetIamPolicyRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[iam_policy_pb2.GetIamPolicyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_iam_policy
 
         Override in a subclass to manipulate the request or metadata
@@ -191,7 +212,12 @@ class ConnectionServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_connections(self, request: connection.ListConnectionsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[connection.ListConnectionsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_connections(
+        self,
+        request: connection.ListConnectionsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[connection.ListConnectionsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_connections
 
         Override in a subclass to manipulate the request or metadata
@@ -199,7 +225,9 @@ class ConnectionServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_connections(self, response: connection.ListConnectionsResponse) -> connection.ListConnectionsResponse:
+    def post_list_connections(
+        self, response: connection.ListConnectionsResponse
+    ) -> connection.ListConnectionsResponse:
         """Post-rpc interceptor for list_connections
 
         Override in a subclass to manipulate the response
@@ -207,7 +235,12 @@ class ConnectionServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_set_iam_policy(self, request: iam_policy_pb2.SetIamPolicyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[iam_policy_pb2.SetIamPolicyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_set_iam_policy(
+        self,
+        request: iam_policy_pb2.SetIamPolicyRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[iam_policy_pb2.SetIamPolicyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for set_iam_policy
 
         Override in a subclass to manipulate the request or metadata
@@ -223,7 +256,12 @@ class ConnectionServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_test_iam_permissions(self, request: iam_policy_pb2.TestIamPermissionsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[iam_policy_pb2.TestIamPermissionsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_test_iam_permissions(
+        self,
+        request: iam_policy_pb2.TestIamPermissionsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[iam_policy_pb2.TestIamPermissionsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for test_iam_permissions
 
         Override in a subclass to manipulate the request or metadata
@@ -231,7 +269,9 @@ class ConnectionServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_test_iam_permissions(self, response: iam_policy_pb2.TestIamPermissionsResponse) -> iam_policy_pb2.TestIamPermissionsResponse:
+    def post_test_iam_permissions(
+        self, response: iam_policy_pb2.TestIamPermissionsResponse
+    ) -> iam_policy_pb2.TestIamPermissionsResponse:
         """Post-rpc interceptor for test_iam_permissions
 
         Override in a subclass to manipulate the response
@@ -239,7 +279,12 @@ class ConnectionServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_connection(self, request: gcbc_connection.UpdateConnectionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[gcbc_connection.UpdateConnectionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_connection(
+        self,
+        request: gcbc_connection.UpdateConnectionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[gcbc_connection.UpdateConnectionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_connection
 
         Override in a subclass to manipulate the request or metadata
@@ -247,7 +292,9 @@ class ConnectionServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_connection(self, response: gcbc_connection.Connection) -> gcbc_connection.Connection:
+    def post_update_connection(
+        self, response: gcbc_connection.Connection
+    ) -> gcbc_connection.Connection:
         """Post-rpc interceptor for update_connection
 
         Override in a subclass to manipulate the response
@@ -277,20 +324,21 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'bigqueryconnection.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[ConnectionServiceRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "bigqueryconnection.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[ConnectionServiceRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -329,7 +377,9 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -340,10 +390,11 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
         self._interceptor = interceptor or ConnectionServiceRestInterceptor()
@@ -353,19 +404,24 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         def __hash__(self):
             return hash("CreateConnection")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: gcbc_connection.CreateConnectionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> gcbc_connection.Connection:
+        def __call__(
+            self,
+            request: gcbc_connection.CreateConnectionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> gcbc_connection.Connection:
             r"""Call the create connection method over HTTP.
 
             Args:
@@ -387,46 +443,51 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/connections',
-                'body': 'connection',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/connections",
+                    "body": "connection",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_connection(request, metadata)
+            request, metadata = self._interceptor.pre_create_connection(
+                request, metadata
+            )
             pb_request = gcbc_connection.CreateConnectionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -445,19 +506,24 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         def __hash__(self):
             return hash("DeleteConnection")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: connection.DeleteConnectionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ):
+        def __call__(
+            self,
+            request: connection.DeleteConnectionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ):
             r"""Call the delete connection method over HTTP.
 
             Args:
@@ -472,37 +538,42 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/connections/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/connections/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_connection(request, metadata)
+            request, metadata = self._interceptor.pre_delete_connection(
+                request, metadata
+            )
             pb_request = connection.DeleteConnectionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -513,19 +584,24 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         def __hash__(self):
             return hash("GetConnection")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: connection.GetConnectionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> connection.Connection:
+        def __call__(
+            self,
+            request: connection.GetConnectionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> connection.Connection:
             r"""Call the get connection method over HTTP.
 
             Args:
@@ -547,37 +623,40 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/connections/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/connections/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_connection(request, metadata)
             pb_request = connection.GetConnectionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -596,19 +675,24 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         def __hash__(self):
             return hash("GetIamPolicy")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: iam_policy_pb2.GetIamPolicyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> policy_pb2.Policy:
+        def __call__(
+            self,
+            request: iam_policy_pb2.GetIamPolicyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> policy_pb2.Policy:
             r"""Call the get iam policy method over HTTP.
 
             Args:
@@ -699,11 +783,12 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{resource=projects/*/locations/*/connections/*}:getIamPolicy',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{resource=projects/*/locations/*/connections/*}:getIamPolicy",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_get_iam_policy(request, metadata)
             pb_request = request
@@ -712,33 +797,35 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -757,19 +844,26 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         def __hash__(self):
             return hash("ListConnections")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageSize" : 0,        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageSize": 0,
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: connection.ListConnectionsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> connection.ListConnectionsResponse:
+        def __call__(
+            self,
+            request: connection.ListConnectionsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> connection.ListConnectionsResponse:
             r"""Call the list connections method over HTTP.
 
             Args:
@@ -790,37 +884,42 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/connections',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/connections",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_connections(request, metadata)
+            request, metadata = self._interceptor.pre_list_connections(
+                request, metadata
+            )
             pb_request = connection.ListConnectionsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -839,19 +938,24 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         def __hash__(self):
             return hash("SetIamPolicy")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: iam_policy_pb2.SetIamPolicyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> policy_pb2.Policy:
+        def __call__(
+            self,
+            request: iam_policy_pb2.SetIamPolicyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> policy_pb2.Policy:
             r"""Call the set iam policy method over HTTP.
 
             Args:
@@ -942,11 +1046,12 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{resource=projects/*/locations/*/connections/*}:setIamPolicy',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{resource=projects/*/locations/*/connections/*}:setIamPolicy",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_set_iam_policy(request, metadata)
             pb_request = request
@@ -955,33 +1060,35 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1000,19 +1107,24 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         def __hash__(self):
             return hash("TestIamPermissions")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: iam_policy_pb2.TestIamPermissionsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> iam_policy_pb2.TestIamPermissionsResponse:
+        def __call__(
+            self,
+            request: iam_policy_pb2.TestIamPermissionsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> iam_policy_pb2.TestIamPermissionsResponse:
             r"""Call the test iam permissions method over HTTP.
 
             Args:
@@ -1029,46 +1141,51 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
                     Response message for ``TestIamPermissions`` method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{resource=projects/*/locations/*/connections/*}:testIamPermissions',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{resource=projects/*/locations/*/connections/*}:testIamPermissions",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_test_iam_permissions(request, metadata)
+            request, metadata = self._interceptor.pre_test_iam_permissions(
+                request, metadata
+            )
             pb_request = request
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1087,19 +1204,26 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         def __hash__(self):
             return hash("UpdateConnection")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: gcbc_connection.UpdateConnectionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> gcbc_connection.Connection:
+        def __call__(
+            self,
+            request: gcbc_connection.UpdateConnectionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> gcbc_connection.Connection:
             r"""Call the update connection method over HTTP.
 
             Args:
@@ -1121,46 +1245,51 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{name=projects/*/locations/*/connections/*}',
-                'body': 'connection',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{name=projects/*/locations/*/connections/*}",
+                    "body": "connection",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_connection(request, metadata)
+            request, metadata = self._interceptor.pre_update_connection(
+                request, metadata
+            )
             pb_request = gcbc_connection.UpdateConnectionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1176,68 +1305,77 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
             return resp
 
     @property
-    def create_connection(self) -> Callable[
-            [gcbc_connection.CreateConnectionRequest],
-            gcbc_connection.Connection]:
+    def create_connection(
+        self,
+    ) -> Callable[
+        [gcbc_connection.CreateConnectionRequest], gcbc_connection.Connection
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateConnection(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateConnection(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_connection(self) -> Callable[
-            [connection.DeleteConnectionRequest],
-            empty_pb2.Empty]:
+    def delete_connection(
+        self,
+    ) -> Callable[[connection.DeleteConnectionRequest], empty_pb2.Empty]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteConnection(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteConnection(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_connection(self) -> Callable[
-            [connection.GetConnectionRequest],
-            connection.Connection]:
+    def get_connection(
+        self,
+    ) -> Callable[[connection.GetConnectionRequest], connection.Connection]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetConnection(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetConnection(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_iam_policy(self) -> Callable[
-            [iam_policy_pb2.GetIamPolicyRequest],
-            policy_pb2.Policy]:
+    def get_iam_policy(
+        self,
+    ) -> Callable[[iam_policy_pb2.GetIamPolicyRequest], policy_pb2.Policy]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetIamPolicy(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetIamPolicy(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_connections(self) -> Callable[
-            [connection.ListConnectionsRequest],
-            connection.ListConnectionsResponse]:
+    def list_connections(
+        self,
+    ) -> Callable[
+        [connection.ListConnectionsRequest], connection.ListConnectionsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListConnections(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListConnections(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def set_iam_policy(self) -> Callable[
-            [iam_policy_pb2.SetIamPolicyRequest],
-            policy_pb2.Policy]:
+    def set_iam_policy(
+        self,
+    ) -> Callable[[iam_policy_pb2.SetIamPolicyRequest], policy_pb2.Policy]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._SetIamPolicy(self._session, self._host, self._interceptor) # type: ignore
+        return self._SetIamPolicy(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def test_iam_permissions(self) -> Callable[
-            [iam_policy_pb2.TestIamPermissionsRequest],
-            iam_policy_pb2.TestIamPermissionsResponse]:
+    def test_iam_permissions(
+        self,
+    ) -> Callable[
+        [iam_policy_pb2.TestIamPermissionsRequest],
+        iam_policy_pb2.TestIamPermissionsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._TestIamPermissions(self._session, self._host, self._interceptor) # type: ignore
+        return self._TestIamPermissions(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_connection(self) -> Callable[
-            [gcbc_connection.UpdateConnectionRequest],
-            gcbc_connection.Connection]:
+    def update_connection(
+        self,
+    ) -> Callable[
+        [gcbc_connection.UpdateConnectionRequest], gcbc_connection.Connection
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateConnection(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateConnection(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -1247,6 +1385,4 @@ class ConnectionServiceRestTransport(ConnectionServiceTransport):
         self._session.close()
 
 
-__all__=(
-    'ConnectionServiceRestTransport',
-)
+__all__ = ("ConnectionServiceRestTransport",)

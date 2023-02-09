@@ -29,18 +29,17 @@ def location_path(
     project_id: str,
     location: str,
 ) -> str:
-    return connection_client().common_location_path(project_id, location)
+    return connection_client.common_location_path(project_id, location)
 
 
 @pytest.fixture(scope="module", autouse=True)
 def cleanup_connection(
-    connection_client: connection_service.ConnectionServiceClient,
-    location_path: str,
+    connection_client: connection_service.ConnectionServiceClient, location_path: str
 ) -> None:
-    for connection in connection_client().list_connections(parent=location_path):
+    for connection in connection_client.list_connections(parent=location_path):
         connection_id = connection.name.split("/")[-1]
         if connection_prefixer.should_cleanup(connection_id):
-            connection_client().delete_connection(name=connection.name)
+            connection_client.delete_connection(name=connection.name)
 
 
 @pytest.fixture(scope="session")

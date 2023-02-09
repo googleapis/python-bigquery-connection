@@ -28,7 +28,7 @@ def main() -> None:
     username = "my-username"  # set database username
     password = "my-password"  # set database password
     cloud_sql_conn_name = ""  # set the name of your connection
-    transport = "grpc" # Set the transport to either "grpc" or "rest"
+    transport = "grpc"  # Set the transport to either "grpc" or "rest"
 
     cloud_sql_credential = bq_connection.CloudSqlCredential(
         {

@@ -31,7 +31,9 @@ def location_path(
     location: str,
     transport: str,
 ) -> str:
-    return connection_client(transport=transport).common_location_path(project_id, location)
+    return connection_client(transport=transport).common_location_path(
+        project_id, location
+    )
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -41,10 +43,14 @@ def cleanup_connection(
     location_path: str,
     transport: str,
 ) -> None:
-    for connection in connection_client(transport=transport).list_connections(parent=location_path):
+    for connection in connection_client(transport=transport).list_connections(
+        parent=location_path
+    ):
         connection_id = connection.name.split("/")[-1]
         if connection_prefixer.should_cleanup(connection_id):
-            connection_client(transport=transport).delete_connection(name=connection.name)
+            connection_client(transport=transport).delete_connection(
+                name=connection.name
+            )
 
 
 @pytest.fixture(scope="session")
@@ -58,7 +64,9 @@ def connection_id(
     id_ = connection_prefixer.create_prefix()
     yield id_
 
-    connection_name = connection_client(transport=transport).connection_path(project_id, location, id_)
+    connection_name = connection_client(transport=transport).connection_path(
+        project_id, location, id_
+    )
     try:
         connection_client(transport=transport).delete_connection(name=connection_name)
     except google.api_core.exceptions.NotFound:

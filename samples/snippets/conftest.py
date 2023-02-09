@@ -19,8 +19,8 @@ import pytest
 
 
 @pytest.fixture(scope="session")
-def connection_client() -> connection_service.ConnectionServiceClient:
-    return connection_service.ConnectionServiceClient()
+def connection_client(transport: str) -> connection_service.ConnectionServiceClient:
+    return connection_service.ConnectionServiceClient(transport=transport)
 
 
 @pytest.fixture(scope="session")

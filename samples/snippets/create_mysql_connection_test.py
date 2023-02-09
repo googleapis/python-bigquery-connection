@@ -51,9 +51,9 @@ def connection_id(
     id_ = connection_prefixer.create_prefix()
     yield id_
 
-    connection_name = connection_client().connection_path(project_id, location, id_)
+    connection_name = connection_client.connection_path(project_id, location, id_)
     try:
-        connection_client().delete_connection(name=connection_name)
+        connection_client.delete_connection(name=connection_name)
     except google.api_core.exceptions.NotFound:
         pass
 

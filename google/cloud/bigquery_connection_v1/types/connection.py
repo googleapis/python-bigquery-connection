@@ -394,22 +394,25 @@ class CloudSpannerProperties(proto.Message):
             data from Cloud Spanner. Note: ``use_parallelism`` must be
             set when using serverless analytics.
         database_role (str):
-            Optional. Cloud Spanner database role for fine-grained
-            access control. A database role is a collection of
-            fine-grained access privileges. Example: Admin predefines
-            roles that provides user a set of permissions {``SELECT``,
-            ``INSERT``, ..}. The user can then specify a predefined role
-            on a connection to execute their Cloud Spanner query. The
-            role is passthrough here. If the user is not authorized to
-            use the specified role, they get an error. This validation
-            happens on Cloud Spanner.
+            Optional. Cloud Spanner database role for
+            fine-grained access control. A database role is
+            a collection of fine-grained access privileges.
+            Example: Admin predefines roles that provides
+            user a set of permissions (SELECT, INSERT, ..).
+            The user can then specify a predefined role on a
+            connection to execute their Cloud Spanner query.
+            The role is passthrough here. If the user is not
+            authorized to use the specified role, they get
+            an error. This validation happens on Cloud
+            Spanner.
 
-            See https://cloud.google.com/spanner/docs/fgac-about for
-            more details.
-
+            See
+            https://cloud.google.com/spanner/docs/fgac-about
+            for more details.
             REQUIRES: database role name must start with
             uppercase/lowercase letter and only contain
-            uppercase/lowercase letters, numbers, and underscores.
+            uppercase/lowercase letters, numbers, and
+            underscores.
     """
 
     database: str = proto.Field(
